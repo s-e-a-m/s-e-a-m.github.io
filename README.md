@@ -2,4 +2,4 @@
 
 Sustainable Electro-Acoustic Music
 
- - [] choose a theme @ [jekyllthemes](http://jekyllthemes.org/)
+ - [ ] choose a theme @ [jekyllthemes](http://jekyllthemes.org/)
