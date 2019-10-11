@@ -1,0 +1,14 @@
+---
+layout: users
+title: Users
+---
+
+<h2>People who contribute to this project.</h2>
+
+<ul>
+  {% for user in site.users %}
+    <li>
+      {{ user.surname }} {{ user.name }}
+    </li>
+  {% endfor %}
+</ul>

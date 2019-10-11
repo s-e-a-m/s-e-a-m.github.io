@@ -18,10 +18,10 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: SUSTAINED ELECTROACOUSTIC MUSIC
+title: SEAM
 email: grammaton@me.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Sustained Electro-Acoustic Music project inspired by Alvise Vidolin and Nicola Bernardini.
+  Sustained Electroacoustic Music project
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: #
@@ -32,10 +32,12 @@ theme: minima
 plugins:
   - jekyll-feed
   - jekyll-sitemap
-  - jekyll-seo-tag  
+  - jekyll-seo-tag
 
 collections:
   authors:
+    output: true
+  users:
     output: true
 
 # Exclude from processing.
