@@ -28,4 +28,4 @@ process = _;
 Così comincia il percorso di porting. Un blocco di codice vuoto.
 Un diagramma a blocchi.
 
-![diagramma](https://github.com/s-e-a-m/s-e-a-m.github.io/blob/master/img/blog/ML-ESTRATTO.jpeg)
+![diagramma](https://raw.githubusercontent.com/s-e-a-m/s-e-a-m.github.io/master/img/blog/ML-ESTRATTO.jpeg)
