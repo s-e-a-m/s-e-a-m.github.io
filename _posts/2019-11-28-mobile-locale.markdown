@@ -105,7 +105,7 @@ del vostro computer:
 qwertyuiopoiuytrewqwertyuiopoiuytrewqwertyuiopoiuytrewq
 ```
 
-ho oscillato tra tra `q` e `p`, 4 volte. Il mio indice di lettura si è mosso 4 volte
+ho oscillato tra tra `q` e `p`, tre volte. Il mio indice di lettura si è mosso tre volte
 avanti e dietro lungo le lettere `qwertyuiop`.
 
 L'oscillarore dovà fare la stessa cosa, la tabella del ritardo sarà una tabella
@@ -122,7 +122,7 @@ qaqf(x) = poscil <: _,_,_,_
   };
 ```
 
-di seguito 16 campioni di un oscillatore unipolare positivo (*poscil*)
+Di seguito 16 campioni di un oscillatore unipolare positivo (*poscil*)
 
 ```
 faustout = [ ...
@@ -145,4 +145,59 @@ faustout = [ ...
 > ];
 ```
 
-come vedete varianti tra zero e uno.
+Come vedete varianti tra zero e uno.
+
+Il compositore distingue tra parametri operativi e parametri esecutivi. I primi
+sono quelli che si impostano per rendere il tutto funzionante ed adatto all'esecuzione, i secondi
+sono gestiti durante l'interpretazione stessa. I  parametri *QF* e *QA* sono etichettati in
+partitura *RTC* (*Real Time Control*) e quindi devono avere *pomelli* variabili
+espressivamente. Sostituiamo quindi ai valori precedentemente immessi dei controlli rotativi
+
+```
+qaqf(x) = poscil <: _,_,_,_
+  with{
+    poscil = os.osc(freq) : *(amp) : +(amp);
+    freq = vslider("[01] QF [style:knob]", 0.1,0.1,320,0.01) : si.smoo;
+    amp = vslider("[02] QA [style:knob]", 0.5,0.0,0.5,0.01) : si.smoo;
+  };
+```
+
+Passando all'oggetto grafico `vslider` l'opzione `style:knob` si predispone un
+controllo rotativo. I controlli grafici richiedono quattro parametri: *valore iniziale,
+valore minimo, valore massimo, precisione*. Per fissare gli ambiti di frequenza
+è necessario uno sguardo più approfondito alla partitura, dalla quale si ricava un ambito
+di azione tra *0.1Hz* a *320.0Hz*. L'ampiezza varia solo positivamente tra *0* e *1* attraverso
+l'operazione `*(amp) : +(amp)` dove ad *amp = 0.5* avremmo `0.5 + 0.5 = 1`.
+
+Un altro parametro di controllo appartenente al blocco *QA&QF* è *gain*, controllo di
+ampiezza a valle del delay, che possiamo già inserire nel nostro codice attraverso
+
+```
+qaqf(x) = poscil <: _,_,_,_
+  with{
+    qaqf(x) = poscil : *(gain) <: _,_,_,_
+    freq = vslider("[01] QF [style:knob]", 0.1,0.1,320,0.01) : si.smoo;
+    amp = vslider("[02] QA [style:knob]", 0.5,0.0,0.5,0.01) : si.smoo;
+    gain = vslider("[03] GAIN [style:knob]", 0,0,5,0.01) : si.smoo;
+  };
+```
+
+È giunto il momento di innserire la linea di ritardo. Faust offre una libreria *delay*
+di meravigliose e dettagliate funzioni di ritardo. Scegliamo `fdelayltv`. Perché?
+È troppo presto per rispondere. Applichiamola e poi ne parliamo.
+
+Questo il blocco comleto, funzionante che poi descriveremo.
+
+```
+qaqf(x) = de.fdelayltv(1,writesize, poscil*(writesize), x) : *(gain) <: _,_*(0),_,*(0)
+  with{
+    oscgroup(x) = hgroup("[01] OSCILLATOR", x);
+    poscil = oscgroup(os.oscsin(freq) : *(amp) : +(amp));
+    freq = vslider("[01] QF [style:knob]", 0.1,0.1,320,0.01) : si.smoo;
+    amp = vslider("[02] QA [style:knob]", 0.5,0.0,0.5,0.01) : si.smoo;
+    writesize = ba.sec2samp(0.046);
+    gain = oscgroup(vslider("[03] GAIN [style:knob]", 0,0,5,0.01) : si.smoo);
+  };
+```
+
+Ora che ci avete giocato un  po' attraverso i controlli rotativi attraverso l'IDE online, possiamo descriverlo brevemente.
