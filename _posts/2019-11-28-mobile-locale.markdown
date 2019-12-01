@@ -35,10 +35,11 @@ Un diagramma di flusso.
 
 ![diagramma](https://raw.githubusercontent.com/s-e-a-m/s-e-a-m.github.io/master/img/blog/ML-ESTRATTO.jpeg)
 
-La lettura della partitura, l'articolazione degli schemi di connessione e dei diagrammi di flusso
-(in partitura è presente un secondo diagramma, più esploso e dettagliato del precedente,
-  che verrà illustrato in seguito) suggeriscono di iniziare la stesura del codice
-  posizionando qualche scatola vuota e scrivendo codice un po' per volta.
+La lettura della partitura, l'articolazione degli schemi di connessione e dei
+diagrammi di flusso (in partitura è presente un secondo diagramma, più esploso e
+dettagliato del precedente, che verrà illustrato in seguito) suggeriscono di
+iniziare la stesura del codice posizionando qualche scatola vuota che riempiremo
+di codice un po' per volta.
 
 ```
 import("stdfaust.lib");
@@ -46,8 +47,8 @@ process = _ <: _,_;
 ```
 
 I primi 7 caratteri aggiunti ci forniscono la prima ramificazione del segnale:
-una copia del segnale si dirige verso una linea di ritardo, *QA&QF*, mentre una seconda
-copia del segnale entra nel blocco *early reflections*.
+una copia del segnale si dirigerà verso la linea di ritardo, *QA&QF*, mentre una seconda
+copia del segnale entrerà nel blocco *early reflections*.
 
 ```
 import("stdfaust.lib");
@@ -57,13 +58,16 @@ process = _ <: qaqf, er8comb;
 ```
 
 La riga `qaqf = _,_,_,_;` ci dice che ci saranno 4 uscite da *QA&QF* mentre in
-partitura ne troviamo richieste solo 2: `output 1 - 3`. Il problema è che se già nella
-fase iniziale della progettazione impostiamo un routing di uscita *complesso* non
-riusciremo più a gestire il traffico dei canali. È molto più semplice gestire
-la simmetria, magari spegnendo qualche canale (magari moltiplicandolo per zero) piuttosto
-che impostare già in partenza un routing articolato. Anche perché con un minimo sguardo
-in avanti dalle *early reflections* dovranno uscire 5 canali… *fidatevi!* simmetrici è
-meglio.
+partitura ne troviamo richieste solo 2: `output 1 - 3`. Potremmo dirgli
+`qaqf = _,_;` ed avere solo due uscite ma sarebbe molto più articolato poi
+spiegare a **Faust** che la seconda uscita in realtà è la terza, che in realtà è
+identica alla prima. Il problema è quindi di *routing* che, nella fase iniziale
+della progettazione dovrebbe essere più semplice possibile. Se impostassiimo
+un routing di uscita *complesso* non riusciremmo più a gestire il traffico dei
+canali. È molto più semplice gestire la simmetria, magari *spegnendo* qualche
+canale (moltiplicandolo per zero) piuttosto che impostare in partenza un routing
+articolato. Anche perché con un minimo sguardo in avanti dalle *early reflections*
+dovranno uscire 5 canali… *fidatevi!* simmetrici è meglio.
 
 Dovremo accettare di rompere un po' di cose prima di arrivare a *QA&QF* completo.
 
@@ -77,8 +81,8 @@ qaqf = poscil <: _,_,_,_
   };
 ```
 
-In questo modo chiediamo un oscillatore sinusoidale di uscire sulle 4 uscite posticce
-di *QA&QF*. Abbiamo rotto l'entrata. Ne siamo consapevoli.
+In questo modo chiediamo ad un oscillatore sinusoidale di uscire sulle 4 uscite
+di *QA&QF*. Abbiamo rotto l'entrata, ma ne siamo consapevoli.
 
 ```
 qaqf(x) = poscil <: _,_,_,_
@@ -87,19 +91,18 @@ qaqf(x) = poscil <: _,_,_,_
   };
 ```
 
-L'aggiunta della variabile `x` ci permette ri ripristinarla, anche questa, in maniera piuttosto inutile,
-in quanto non riutilizzata, ancora, dalla funzione.
+L'aggiunta della variabile `x` ci permette ri ripristinare un canale di entrata
+non ancora utilizzato dalla funzione.
 
-L'oscillatore sta vibrando tra `+1` e `-1`, potete osservarlo dal piccolo riquadro
-che mostra la forma d'onda a destra del vostro browser se utilizzate l'IDE di Faust online.
-
-Il nostro oscillatore, ci viene chiesto dal compositore, dovrà controllare l'*indice*
-di lettura di un delay. Ora, dovremmo ragionare un po' sul funzionamento di questo
-meccanismo di lettura. Se immaginate un'oscillazione sinusoidale orizzontale è piuttosto
-complicata la questione. Ma se ve la figurate verticale, come se, leggendo un  libro
-con il  vostro indice di lettura seguiste un moto ondulatorio, oscillatorio, avanti e dietro,
-ecco che avete già plasmato il vostro oscillatore di lettura. Fatelo ora con la tastiera
-del vostro computer:
+L'oscillatore sta vibrando tra `+1` e `-1`. Il nostro oscillatore, ci viene
+chiesto dal compositore, dovrà controllare l'*indice* di lettura di un delay.
+Ora, dovremmo ragionare un po' sul funzionamento di questo meccanismo di lettura.
+Se immaginate un'oscillazione sinusoidale orizzontale è piuttosto complicata la
+questione, ma se ve la figurate verticale, come se, leggendo un libro con il
+vostro indice di lettura seguiste un moto ondulatorio, oscillatorio, avanti e
+dietro sulla stessa riga di testo, ecco che avete già plasmato il vostro
+oscillatore di lettura. Se non avete un libro a portata di mano, fatelo ora con
+la tastiera del vostro computer:
 
 ```
 qwertyuiopoiuytrewqwertyuiopoiuytrewqwertyuiopoiuytrewq
@@ -108,12 +111,14 @@ qwertyuiopoiuytrewqwertyuiopoiuytrewqwertyuiopoiuytrewq
 ho oscillato tra tra `q` e `p`, tre volte. Il mio indice di lettura si è mosso tre volte
 avanti e dietro lungo le lettere `qwertyuiop`.
 
-L'oscillarore dovà fare la stessa cosa, la tabella del ritardo sarà una tabella
-di campioni, quanti campioni, tanti campioni, mettiamo `qwertyuiop` campioni. L'oscillatore
-dovrà muoversi tra il suo minimo `q` e il suo massimo `p` in  maniera sinuosa.
+L'oscillarore dovà fare la stessa cosa. La tabella del ritardo sarà una tabella
+di campioni, quanti campioni, tanti campioni, mettiamo `qwertyuiop` campioni.
+L'oscillatore dovrà muoversi tra il suo minimo `q` e il suo massimo `p` in
+maniera sinuosa.
 
-Per farlo però l'oscillatore non dovrà più avere valori negativi, il suo minimo dovrà essere
-il valore zero, la nostra lettera `q` ed il suo massimo il valore uno, `p`.
+Per farlo però l'oscillatore non dovrà più avere valori negativi (`-1`), il suo
+minimo dovrà essere il valore zero, la nostra lettera `q`, ed il suo massimo il
+valore uno, `p`.
 
 ```
 qaqf(x) = poscil <: _,_,_,_
@@ -122,7 +127,8 @@ qaqf(x) = poscil <: _,_,_,_
   };
 ```
 
-Di seguito 16 campioni di un oscillatore unipolare positivo (*poscil*)
+Abbiamo realizzato quello che si definisce un oscillatore unipolare positivo (*poscil*).
+Di seguito 16 campioni di *poscil*, come vedrete, varianti tra zero e uno:
 
 ```
 faustout = [ ...
@@ -145,13 +151,13 @@ faustout = [ ...
 > ];
 ```
 
-Come vedete varianti tra zero e uno.
-
 Il compositore distingue tra parametri operativi e parametri esecutivi. I primi
-sono quelli che si impostano per rendere il tutto funzionante ed adatto all'esecuzione, i secondi
-sono gestiti durante l'interpretazione stessa. I  parametri *QF* e *QA* sono etichettati in
-partitura *RTC* (*Real Time Control*) e quindi devono avere *pomelli* variabili
-espressivamente. Sostituiamo quindi ai valori precedentemente immessi dei controlli rotativi
+sono quelli che si impostano per rendere il tutto funzionante ed adatto all'esecuzione,
+i secondi sono gestiti durante l'interpretazione stessa. I  parametri *QF* e *QA*
+sono etichettati in partitura *RTC* (*Real Time Control*) e quindi apparteneneti
+alla seconda categoria, devono avere *pomelli* variabili espressivamente.
+Sostituiamo quindi ai valori precedentemente immessi con dei valori forniti da
+controlli rotativi:
 
 ```
 qaqf(x) = poscil <: _,_,_,_
@@ -182,7 +188,7 @@ qaqf(x) = poscil <: _,_,_,_
   };
 ```
 
-È giunto il momento di innserire la linea di ritardo. Faust offre una libreria *delay*
+È giunto il momento di inserire la linea di ritardo. Faust offre una libreria *delay*
 di meravigliose e dettagliate funzioni di ritardo. Scegliamo `fdelayltv`. Perché?
 È troppo presto per rispondere. Applichiamola e poi ne parliamo.
 
