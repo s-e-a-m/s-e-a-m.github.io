@@ -26,7 +26,7 @@ Giulio Romano De Mattia:
       icon: "fas fa-fw fa-link"
       url: "https://s-e-a-m.github.io/giulio-romano-de-mattia/"
     - label: "GitLab"
-      icon: "fab fa-fw fa-github"
+      icon: "fab fa-fw fa-gitlab"
       url: "https://gitlab.com/GiulioDeMattia"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
@@ -72,7 +72,13 @@ Francesco Ferracuti:
       url: "mailto:ferracutifrancesco.00@gmail.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      url: "https://s-e-a-m.github.com/francesco-ferracuti/"
+      url: "https://s-e-a-m.github.io/francesco-ferracuti/"
+    - label: "GitLab"
+      icon: "fab fa-fw fa-gitlab"
+      url: "https://gitlab.com/francesco-ferracuti"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/FranFerr00"
 
 Billy Rick:
   name        : "Billy Rick"
