@@ -2,7 +2,7 @@
 Giulio Romano De Mattia:
   name        : "Giulio Romano De Mattia"
   bio         : "Ricordando giornalmente la nascita"
-  avatar      : "/assets/images/giulio-photo.jpeg"
+  avatar      : "/assets/images/grdm.jpeg"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
