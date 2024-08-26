@@ -2,7 +2,7 @@
 Giulio Romano De Mattia:
   name        : "Giulio Romano De Mattia"
   bio         : "Ricordando giornalmente la nascita"
-  avatar      : "/assets/images/giulio-photo.jpeg"
+  avatar      : "/assets/images/grdm.jpeg"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
@@ -47,7 +47,7 @@ Giuseppe Silvi:
 Francesco Ferracuti:
   name        : "Francesco Ferracuti"
   bio         : "sono ecosostenibile, sono bio"
-  avatar      : "assets/images/Francesco_photo.jpg"
+  avatar      : "assets/images/ff.jpg"
   links:
     - label: "ferracutifrancesco.00@gmail.com"
       icon: "fas fa-fw fa-envelope-square"
