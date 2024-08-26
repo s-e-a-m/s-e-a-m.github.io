@@ -1,4 +1,19 @@
 # Authors
+Alice Cortegiani:
+  name        : "Alice Cortegiani"
+  bio         : "Zebra Permanente"
+  avatar      : "/assets/images/ac2.jpg"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:alicecortegiani@gmail.com"
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://s-e-a-m.github.com/alice-cortegiani/"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/Metabolismo"
+
 Giulio Romano De Mattia:
   name        : "Giulio Romano De Mattia"
   bio         : "Ricordando giornalmente la nascita"
@@ -7,6 +22,9 @@ Giulio Romano De Mattia:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       url: "mailto:giuliodemattia21@gmail.com"
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://s-e-a-m.github.io/giulio-romano-de-mattia/"
     - label: "GitLab"
       icon: "fab fa-fw fa-github"
       url: "https://gitlab.com/GiulioDeMattia"
@@ -52,6 +70,9 @@ Francesco Ferracuti:
     - label: "ferracutifrancesco.00@gmail.com"
       icon: "fas fa-fw fa-envelope-square"
       url: "mailto:ferracutifrancesco.00@gmail.com"
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://s-e-a-m.github.com/francesco-ferracuti/"
 
 Billy Rick:
   name        : "Billy Rick"
