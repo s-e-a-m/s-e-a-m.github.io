@@ -17,7 +17,7 @@ Alice Cortegiani:
 Giulio Romano De Mattia:
   name        : "Giulio Romano De Mattia"
   bio         : "Ricordando giornalmente la nascita"
-  avatar      : "/assets/images/giulio-photo.jpeg"
+  avatar      : "/assets/images/grdm.jpeg"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
@@ -54,7 +54,7 @@ Giuseppe Silvi:
       url: "mailto:grammaton@me.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      url: "https://www.davidetedesco.it"
+      url: "https://s-e-a-m.github.com/giuseppe-silvi/"
     # - label: "Twitter"
     #   icon: "fab fa-fw fa-twitter-square"
     #   url: "https://twitter.com/extravagantman"
@@ -62,7 +62,7 @@ Giuseppe Silvi:
 Francesco Ferracuti:
   name        : "Francesco Ferracuti"
   bio         : "sono ecosostenibile, sono bio"
-  avatar      : "assets/images/Francesco_photo.jpg"
+  avatar      : "assets/images/ff.jpg"
   links:
     - label: "ferracutifrancesco.00@gmail.com"
       icon: "fas fa-fw fa-envelope-square"
