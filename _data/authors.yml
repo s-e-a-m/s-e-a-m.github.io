@@ -26,3 +26,19 @@ Cornelius Fiddlebone:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/rhymeswithsackit"
+
+
+Giulio Romano De Mattia:
+  name        : "Giulio Romano De Mattia"
+  bio         : "Ricordando giornalmente la nascita"
+  avatar      : "/assets/images/giulio-photo.jpeg"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:giuliodemattia21@gmail.com"
+    - label: "GitLab"
+      icon: "fab fa-fw fa-github"
+      url: "https://gitlab.com/GiulioDeMattia"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/DMGiulioRomano"
