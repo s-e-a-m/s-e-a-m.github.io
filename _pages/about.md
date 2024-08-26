@@ -3,11 +3,9 @@ permalink: /about/
 title: "About"
 ---
 
-# SEAM
-
 _Sustained Electro-Acoustic Music_ is a project inspired by [Alvise Vidolin and Nicola Bernardini](https://www.academia.edu/16348988/Sustainable_live_electro-acoustic_music).
 
-#### SEAM meaning
+## SEAM meaning
 
 > **seam** \| siːm \|  
 > noun  
@@ -20,3 +18,11 @@ _Sustained Electro-Acoustic Music_ is a project inspired by [Alvise Vidolin and 
 > * a trace or presence of something: there is a seam of despondency in Stipe's words.    
 >
 > verb 1. join with a seam: it can be used for seaming garments. 2. \(usually as adjective seamed\) make a long, narrow indentation in: men in middle age have seamed faces.
+
+## Contributors:
+
+ - [Alice Cortegiani](http://s-e-a-m.github.io/alice-cortegiani/)
+ - [Giulio Romano De Mattia](http://s-e-a-m.github.io/giulio-romano-de-mattia/)
+ - [Francesco Ferracuti](http://s-e-a-m.github.io/francesco-ferracuti/)
+ - [Davide Tedesco]()
+ - [Giuseppe Silvi](http://s-e-a-m.github.io/giuseppe-silvi/)
