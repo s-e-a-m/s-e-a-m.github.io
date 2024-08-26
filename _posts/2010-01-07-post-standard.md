@@ -1,5 +1,6 @@
 ---
 title: "Post: Standard"
+Author: Davide Tedesco
 excerpt_separator: "<!--more-->"
 categories:
   - Blog
