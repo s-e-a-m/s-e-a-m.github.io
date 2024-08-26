@@ -1,5 +1,35 @@
 # Authors
 
+Davide Tedesco:
+  name        : "Davide Tedesco"
+  bio         : "sudo"
+  avatar      : "assets/images/dt.jpeg"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:me@davidetedesco.it"
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://www.davidetedesco.it"
+    # - label: "Twitter"
+    #   icon: "fab fa-fw fa-twitter-square"
+    #   url: "https://twitter.com/extravagantman"
+
+Giuseppe Silvi:
+  name        : "Giuseppe Silvi"
+  bio         : "Vivere è stare svegli."
+  avatar      : "assets/images/gs.jpg"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:grammaton@me.com"
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://www.davidetedesco.it"
+    # - label: "Twitter"
+    #   icon: "fab fa-fw fa-twitter-square"
+    #   url: "https://twitter.com/extravagantman"
+
 Billy Rick:
   name        : "Billy Rick"
   bio         : "What do you want, jewels? I am a very extravagant man."
