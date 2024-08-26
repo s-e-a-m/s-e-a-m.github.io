@@ -19,7 +19,7 @@ Alice Cortegiani:
 Giulio Romano De Mattia:
   name        : "Giulio Romano De Mattia"
   bio         : "Ricordando giornalmente la nascita"
-  avatar      : "https://github.com/s-e-a-m/giulio-romano-de-mattia/blob/master/assets/images/grdm.jpeg"
+  avatar      : "/assets/images/grdm.jpeg"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
