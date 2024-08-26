@@ -13,7 +13,7 @@ Giulio Romano De Mattia:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/DMGiulioRomano"
-      
+
 Davide Tedesco:
   name        : "Davide Tedesco"
   bio         : "sudo"
@@ -43,6 +43,15 @@ Giuseppe Silvi:
     # - label: "Twitter"
     #   icon: "fab fa-fw fa-twitter-square"
     #   url: "https://twitter.com/extravagantman"
+
+Francesco Ferracuti:
+  name        : "Francesco Ferracuti"
+  bio         : "sono ecosostenibile, sono bio"
+  avatar      : "assets/images/Francesco_photo.jpg"
+  links:
+    - label: "ferracutifrancesco.00@gmail.com"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:ferracutifrancesco.00@gmail.com"
 
 Billy Rick:
   name        : "Billy Rick"
