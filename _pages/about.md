@@ -3,6 +3,20 @@ permalink: /about/
 title: "About"
 ---
 
-Tempor velit sint sunt ipsum tempor enim ad qui ullamco. Est dolore anim ad velit duis dolore minim sunt aliquip amet commodo labore. Ut eu pariatur aute ea aute excepteur laborum. Esse ea esse excepteur minim mollit qui cillum excepteur ex dolore magna. Labore deserunt fugiat incididunt incididunt sint ea. Consequat dolore aute laboris quis proident quis non et est consectetur ex eiusmod sit culpa.
+# SEAM
 
-Cupidatat ea do et in excepteur in. Ad nostrud ut est esse eu duis ea sunt eiusmod. Aliquip tempor veniam sint elit fugiat. Velit incididunt laboris amet incididunt labore dolore irure velit excepteur commodo deserunt laborum. Consectetur eu fugiat veniam veniam Lorem labore magna eiusmod. Ea occaecat reprehenderit pariatur consectetur minim labore ut aliquip.
+_Sustained Electro-Acoustic Music_ is a project inspired by [Alvise Vidolin and Nicola Bernardini](https://www.academia.edu/16348988/Sustainable_live_electro-acoustic_music).
+
+#### SEAM meaning
+
+> **seam** \| siːm \|  
+> noun  
+> 1. a line where two pieces of fabric are sewn together in a garment or other article.
+>
+> * a line where the edges of two pieces of wood, wallpaper, or another material touch each other: the task involved clamping the panels into position and arc welding a seam to join them.
+> * a long thin indentation or scar: the track cleaves a seam through corn.
+>   1. an underground layer of a mineral such as coal or gold: the buried forests became seams of coal.
+> * a supply of something valuable: Sunderland have a rich seam of experienced players.
+> * a trace or presence of something: there is a seam of despondency in Stipe's words.    
+>
+> verb 1. join with a seam: it can be used for seaming garments. 2. \(usually as adjective seamed\) make a long, narrow indentation in: men in middle age have seamed faces.
