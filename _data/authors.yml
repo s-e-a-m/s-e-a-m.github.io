@@ -1,4 +1,22 @@
 # Authors
+<<<<<<< Updated upstream
+=======
+Alice Cortegiani:
+  name        : "Alice Cortegiani"
+  bio         : "Zebra Permanente"
+  avatar      : "/assets/images/acc.jpg"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:alicecortegiani@gmail.com"
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://s-e-a-m.github.com/alice-cortegiani/"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/Metabolismo"
+
+>>>>>>> Stashed changes
 Giulio Romano De Mattia:
   name        : "Giulio Romano De Mattia"
   bio         : "Ricordando giornalmente la nascita"
