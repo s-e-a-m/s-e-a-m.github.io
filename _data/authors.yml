@@ -1,19 +1,4 @@
 # Authors
-Alice Cortegiani:
-  name        : "Alice Cortegiani"
-  bio         : "Zebra Permanente"
-  avatar      : "/assets/images/ac2.jpg"
-  links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:alicecortegiani@gmail.com"
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
-      url: "https://s-e-a-m.github.com/alice-cortegiani/"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/Metabolismo"
-
 Giulio Romano De Mattia:
   name        : "Giulio Romano De Mattia"
   bio         : "Ricordando giornalmente la nascita"
@@ -31,6 +16,24 @@ Giulio Romano De Mattia:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/DMGiulioRomano"
+
+Luca Spanedda:
+  name        : "Luca Spanedda"
+  bio         : "Bio "
+  avatar      : "/assets/images/ls.jpeg"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:lucaspanedda1995@gmail.com"
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://s-e-a-m.github.io/luca-spanedda/"
+    - label: "GitLab"
+      icon: "fab fa-fw fa-gitlab"
+      url: "https://gitlab.com/lucaspanedda1995"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/LucaSpanedda"
 
 Davide Tedesco:
   name        : "Davide Tedesco"
@@ -70,15 +73,6 @@ Francesco Ferracuti:
     - label: "ferracutifrancesco.00@gmail.com"
       icon: "fas fa-fw fa-envelope-square"
       url: "mailto:ferracutifrancesco.00@gmail.com"
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
-      url: "https://s-e-a-m.github.io/francesco-ferracuti/"
-    - label: "GitLab"
-      icon: "fab fa-fw fa-gitlab"
-      url: "https://gitlab.com/francesco-ferracuti"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/FranFerr00"
 
 Billy Rick:
   name        : "Billy Rick"

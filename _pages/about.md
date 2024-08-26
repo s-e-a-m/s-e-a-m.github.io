@@ -26,3 +26,4 @@ _Sustained Electro-Acoustic Music_ is a project inspired by [Alvise Vidolin and 
  - [Francesco Ferracuti](http://s-e-a-m.github.io/francesco-ferracuti/)
  - [Davide Tedesco]()
  - [Giuseppe Silvi](http://s-e-a-m.github.io/giuseppe-silvi/)
+ - [Luca Spanedda]()
