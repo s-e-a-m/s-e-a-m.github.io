@@ -70,6 +70,9 @@ Francesco Ferracuti:
     - label: "ferracutifrancesco.00@gmail.com"
       icon: "fas fa-fw fa-envelope-square"
       url: "mailto:ferracutifrancesco.00@gmail.com"
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://s-e-a-m.github.com/francesco-ferracuti/"
 
 Billy Rick:
   name        : "Billy Rick"
