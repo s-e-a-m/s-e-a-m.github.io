@@ -60,7 +60,7 @@ plugins:
 paginate_multiple:
   - paginate: 5
     paginate_path: '/giuseppe-silvi/page:num/'
-    sub_dir: '/gs'
+    sub_dir: '/giuseppe-silvi/'
 
 author:
   name   : "SEAM"
