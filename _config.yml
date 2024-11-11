@@ -49,17 +49,11 @@ include:
 # Plugins (previously gems:)
 plugins:
   - jekyll-paginate
-  - jekyll-paginate-multiple
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
   - jemoji
   - jekyll-include-cache
-
-paginate_multiple:
-  - paginate: 5
-    paginate_path: '/giuseppe-silvi/page:num/'
-    sub_dir: "/giuseppe-silvi/"
 
 author:
   name   : "SEAM"
