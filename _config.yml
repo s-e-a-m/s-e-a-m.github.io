@@ -57,6 +57,11 @@ plugins:
   - jemoji
   - jekyll-include-cache
 
+paginate_multiple:
+  - paginate: 5
+    paginate_path: '/giuseppe-silvi/page:num/'
+    sub_dir: '/gs'
+
 author:
   name   : "SEAM"
   avatar : "assets/images/seam_w_w.png"
