@@ -104,6 +104,14 @@ defaults:
     values:
       layout: single
       author_profile: true
+# _giuseppe
+  - scope:
+      path: "s-e-a-m.github.io/giuseppe-silvi/_posts"
+      type: giuseppe
+    values:
+      layout: single
+      author_profile: true
+      share: true
 
 category_archive:
   type: liquid
