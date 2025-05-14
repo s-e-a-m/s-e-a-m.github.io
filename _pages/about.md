@@ -24,6 +24,6 @@ _Sustained Electro-Acoustic Music_ is a project inspired by [Alvise Vidolin and 
  - [Alice Cortegiani](http://s-e-a-m.github.io/alice-cortegiani/)
  - [Giulio Romano De Mattia](http://s-e-a-m.github.io/giulio-romano-de-mattia/)
  - [Francesco Ferracuti](http://s-e-a-m.github.io/francesco-ferracuti/)
- - [Davide Tedesco]()
+ - [Davide Tedesco](http://s-e-a-m.github.io/davide-tedesco/)
  - [Giuseppe Silvi](http://s-e-a-m.github.io/giuseppe-silvi/)
  - [Luca Spanedda]()
