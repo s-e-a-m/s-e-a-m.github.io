@@ -24,7 +24,16 @@ search: true
 
 # Build settings
 markdown: kramdown
-remote_theme: mmistakes/minimal-mistakes
+kramdown:
+  input: GFM # Abilita GitHub Flavored Markdown
+  hard_wrap: false
+  syntax_highlighter: rouge # o 'coderay' se preferisci, MM usa rouge
+  syntax_highlighter_opts:
+    # Rouge options
+    css_class: 'highlight'
+    # line_numbers: true # opzionale
+theme: minimal-mistakes-jekyll
+#remote_theme: mmistakes/minimal-mistakes
 # Outputting
 permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
@@ -49,11 +58,14 @@ include:
 # Plugins (previously gems:)
 plugins:
   - jekyll-paginate
+  - jekyll-paginate-multiple
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
   - jemoji
   - jekyll-include-cache
+  - jekyll-algolia
+  - jekyll-seo-tag
 
 author:
   name   : "SEAM"

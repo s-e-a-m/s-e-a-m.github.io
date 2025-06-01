@@ -1,0 +1,69 @@
+{
+  "nodes": [
+    {
+      "id": "/404.html",
+      "label": "Page Not Found",
+      "title": "Page Not Found",
+      "group": 2,
+      "value": 10,
+      "url": "/404.html"
+    },
+    {
+      "id": "/about/",
+      "label": "About",
+      "title": "About",
+      "group": 1,
+      "value": 20,
+      "url": "/about/"
+    },
+    {
+      "id": "/categories/",
+      "label": "Posts by Category",
+      "title": "Posts by Category",
+      "group": 1,
+      "value": 20,
+      "url": "/categories/"
+    },
+    {
+      "id": "/",
+      "label": "Welcome",
+      "title": "Welcome",
+      "group": 2,
+      "value": 10,
+      "url": "/"
+    },
+    {
+      "id": "/tags/",
+      "label": "Posts by Tag",
+      "title": "Posts by Tag",
+      "group": 1,
+      "value": 20,
+      "url": "/tags/"
+    },
+    {
+      "id": "/posts/",
+      "label": "Posts by Year",
+      "title": "Posts by Year",
+      "group": 1,
+      "value": 20,
+      "url": "/posts/"
+    },
+    {
+      "id": "/blog/post-alo/",
+      "label": "Post: Standard",
+      "title": "Post: Standard",
+      "group": 2,
+      "value": 10,
+      "url": "/blog/post-alo/"
+    },
+    {
+      "id": "/blog/welcome-to-jekyll/",
+      "label": "Welcome to Jekyll!",
+      "title": "Welcome to Jekyll!",
+      "group": 2,
+      "value": 10,
+      "url": "/blog/welcome-to-jekyll/"
+    }
+  ],
+  "edges": []
+}

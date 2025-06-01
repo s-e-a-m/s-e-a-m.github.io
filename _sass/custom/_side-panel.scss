@@ -1,0 +1,175 @@
+// _sass/custom/_side-panel.scss
+
+// -----------------------------------------------------------------------------
+// Variabili per il Pannello Laterale e Layout Grafo
+// -----------------------------------------------------------------------------
+
+// Layout Generale della Pagina Grafo (precedentemente inline in graph-canvas.html)
+$graph-page-bg-color: #252a34; // Sfondo per l'intera pagina del grafo
+
+// Pannello Laterale
+$side-panel-width: 280px;
+$side-panel-bg-color: #1c1f26; // Leggermente più scuro dello sfondo della pagina
+$side-panel-text-color: #b0bac9; // Grigio-blu chiaro per buona leggibilità
+$side-panel-text-hover-color: #ffffff;
+$side-panel-link-hover-bg: rgba(255, 255, 255, 0.07);
+$side-panel-border-color: rgba(255, 255, 255, 0.1); // Per hr e bordi
+$side-panel-transition-duration: 0.35s;
+$side-panel-transition-timing: ease-in-out; // Più standard di cubic-bezier specifico
+
+// Pulsante Toggle Menu
+$menu-toggle-bg: rgba(70, 80, 100, 0.3); // Sfondo più scuro e meno trasparente
+$menu-toggle-hover-bg: rgba(90, 100, 120, 0.5);
+$menu-toggle-color: #dfe3e8;
+$menu-toggle-size: 22px; // Dimensione font per l'icona hamburger
+
+// -----------------------------------------------------------------------------
+// Stili Globali per il Layout Grafo (da graph-canvas.html)
+// -----------------------------------------------------------------------------
+
+html.layout--graph-canvas, // Targettizza html solo quando il body ha questa classe
+body.layout--graph-canvas {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: $graph-page-bg-color;
+  font-family: $sans-serif; // Eredita il font di MM
+}
+
+// Wrapper principale per il contenuto del grafo e il pulsante menu
+#graph-container-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative; // Contesto di posizionamento per .menu-toggle e #graph-container
+}
+
+// Contenitore effettivo per la libreria Vis.js
+#graph-container { // Usiamo l'ID per specificità
+  width: 100%;
+  height: 100%;
+  position: relative; // Spesso necessario per le librerie di grafi
+  // background-color: lighten($graph-page-bg-color, 5%); // Sfondo leggermente diverso per il grafo stesso (opzionale)
+  // border: 2px dashed red; // DEBUG: per vedere i limiti del contenitore del grafo
+}
+
+// -----------------------------------------------------------------------------
+// Stili per il Pulsante del Menu (Hamburger Icon)
+// -----------------------------------------------------------------------------
+
+.menu-toggle {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 1001; // Sopra il grafo ma sotto il pannello quando è aperto
+  background: $menu-toggle-bg;
+  color: $menu-toggle-color;
+  border: 1px solid rgba(255, 255, 255, 0.1); // Bordo sottile
+  padding: 8px 10px;
+  cursor: pointer;
+  border-radius: $border-radius; // Variabile da MM
+  font-size: $menu-toggle-size;
+  line-height: 1; // Per centrare meglio l'icona hamburger testuale
+  transition: background-color $side-panel-transition-duration ease, box-shadow 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+
+  &:hover {
+    background: $menu-toggle-hover-bg;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  }
+
+  &:focus {
+    outline: 2px solid $link-color; // Focus visibile per accessibilità
+    outline-offset: 2px;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Stili per il Pannello Laterale del Menu
+// -----------------------------------------------------------------------------
+
+.side-panel {
+  height: 100%;
+  width: 0; // Inizia chiuso, la larghezza viene impostata da .is-open
+  position: fixed;
+  z-index: 1002; // Sopra il toggle e il grafo
+  top: 0;
+  left: 0;
+  background-color: $side-panel-bg-color;
+  overflow-x: hidden; // Disabilita lo scroll orizzontale nel pannello
+  overflow-y: auto;   // Permette lo scroll verticale se ci sono molti link
+  transition: width $side-panel-transition-duration $side-panel-transition-timing;
+  padding-top: 0; // Rimuoviamo il padding-top, gestiremo lo spazio con l'header del pannello
+  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.3); // Ombra più definita
+
+  &.is-open {
+    width: $side-panel-width;
+  }
+
+  // Header del pannello (per titolo e pulsante chiusura)
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 15px 13px 25px; // Meno padding a destra per il pulsante
+    // border-bottom: 1px solid $side-panel-border-color;
+    background-color: darken($side-panel-bg-color, 3%); // Sfondo leggermente diverso per l'header
+  }
+
+  &__title {
+    font-size: $type-size-5; // Variabile MM
+    color: $side-panel-text-hover-color;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .close-btn {
+    font-size: 32px; // Leggermente più piccolo
+    color: $side-panel-text-color;
+    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 5px 10px; // Area cliccabile
+    line-height: 1;
+    cursor: pointer;
+
+    &:hover {
+      color: $side-panel-text-hover-color;
+    }
+    &:focus {
+      outline: 2px solid $link-color; // Focus visibile
+      outline-offset: -2px; // Interno per non uscire dal pulsante
+    }
+  }
+
+  // Contenitore per i link di navigazione
+  &__nav {
+    padding-top: 10px; // Spazio dopo l'header
+  }
+
+  a:not(.close-btn) { // Applica a tutti gli 'a' tranne il close-btn
+    padding: 12px 25px 12px 25px;
+    text-decoration: none;
+    font-size: $type-size-6;
+    color: $side-panel-text-color;
+    display: block;
+    transition: color 0.2s ease, background-color 0.2s ease, border-left-color 0.2s ease;
+    border-left: 4px solid transparent; // Bordo per indicare link attivo/hover
+
+    &:hover,
+    &:focus { // Anche il focus dovrebbe avere un feedback simile
+      color: $side-panel-text-hover-color;
+      background-color: $side-panel-link-hover-bg;
+      border-left-color: $link-color; // Variabile MM
+      outline: none; // Rimuovi outline di default se gestiamo il focus con altri stili
+    }
+  }
+
+  hr { // Linea separatrice nel menu
+    border: 0;
+    height: 1px;
+    background-color: $side-panel-border-color;
+    margin: 15px 25px;
+  }
+}
