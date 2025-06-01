@@ -28,7 +28,7 @@ group :jekyll_plugins do
   # Manteniamo jekyll-remote-theme per ora nel Gemfile, ma lo commenteremo nel _config.yml
   gem "jekyll-remote-theme"
 end
-
+gem "nokogiri", "~> 1.15"
 # Gemme per il processore Markdown (kramdown è il default per MM)
 gem "kramdown", "~> 2.3" # O l'ultima versione compatibile
 gem "kramdown-parser-gfm", "~> 1.1"

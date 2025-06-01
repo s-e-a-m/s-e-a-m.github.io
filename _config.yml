@@ -15,6 +15,8 @@
 # in the templates via {{ site.myvariable }}.
 title: SEAM
 email:
+url: "https://s-e-a-m.github.io"
+baseurl: "" # Corretto per un sito user/org page (alla root del dominio)
 description: >- # this means to ignore newlines until "baseurl:"
   Sustained Electro-Acoustic Music
 twitter_username:
