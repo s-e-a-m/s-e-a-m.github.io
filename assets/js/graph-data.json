@@ -2,8 +2,8 @@
   "nodes": [
     {
       "id": "/",
-      "label": "S-E-A-M",
-      "title": "Nodo centrale della mappa del sito",
+      "label": "Mappa del Sito",
+      "title": "Nodo centrale",
       "group": 0,
       "value": 35,
       "url": "/"
@@ -25,28 +25,28 @@
       "url": "/about/"
     },
     {
-      "id": "/categories/",
+      "id": "/posts/",
+      "label": "Posts per Autore",
+      "title": "Posts per Autore",
+      "group": 1,
+      "value": 25,
+      "url": "/posts/"
+    },
+    {
+      "id": "/progetti/",
       "label": "Progetti",
       "title": "Progetti",
       "group": 1,
       "value": 25,
-      "url": "/categories/"
+      "url": "/progetti/"
     },
     {
       "id": "/tags/",
-      "label": "Posts by Tag",
-      "title": "Posts by Tag",
+      "label": "Posts per Tag",
+      "title": "Posts per Tag",
       "group": 1,
       "value": 25,
       "url": "/tags/"
-    },
-    {
-      "id": "/posts/",
-      "label": "Posts by Year",
-      "title": "Posts by Year",
-      "group": 1,
-      "value": 25,
-      "url": "/posts/"
     },
     {
       "id": "/blog/post-alo/",
@@ -63,18 +63,81 @@
       "group": 2,
       "value": 12,
       "url": "/blog/welcome-to-jekyll/"
+    },
+    {
+      "id": "https://s-e-a-m.github.io/alice-cortegiani/",
+      "label": "Alice Cortegiani",
+      "title": "Sito di Alice Cortegiani",
+      "group": 3,
+      "value": 20,
+      "url": "https://s-e-a-m.github.io/alice-cortegiani/",
+      "is_external_site_node": true
+    },
+    {
+      "id": "https://s-e-a-m.github.io/giulio-romano-de-mattia/",
+      "label": "Giulio Romano De Mattia",
+      "title": "Sito di Giulio Romano De Mattia",
+      "group": 3,
+      "value": 20,
+      "url": "https://s-e-a-m.github.io/giulio-romano-de-mattia/",
+      "is_external_site_node": true
+    },
+    {
+      "id": "https://s-e-a-m.github.io/luca-spanedda/",
+      "label": "Luca Spanedda",
+      "title": "Sito di Luca Spanedda",
+      "group": 3,
+      "value": 20,
+      "url": "https://s-e-a-m.github.io/luca-spanedda/",
+      "is_external_site_node": true
+    },
+    {
+      "id": "https://www.davidetedesco.it",
+      "label": "Davide Tedesco",
+      "title": "Sito di Davide Tedesco",
+      "group": 3,
+      "value": 20,
+      "url": "https://www.davidetedesco.it",
+      "is_external_site_node": true
+    },
+    {
+      "id": "https://s-e-a-m.github.com/giuseppe-silvi/",
+      "label": "Giuseppe Silvi",
+      "title": "Sito di Giuseppe Silvi",
+      "group": 3,
+      "value": 20,
+      "url": "https://s-e-a-m.github.com/giuseppe-silvi/",
+      "is_external_site_node": true
+    },
+    {
+      "id": "https://s-e-a-m.github.io/francesco-ferracuti/",
+      "label": "Francesco Ferracuti",
+      "title": "Sito di Francesco Ferracuti",
+      "group": 3,
+      "value": 20,
+      "url": "https://s-e-a-m.github.io/francesco-ferracuti/",
+      "is_external_site_node": true
+    },
+    {
+      "id": "https://thewhip.com",
+      "label": "Domenico Nasso",
+      "title": "Sito di Domenico Nasso",
+      "group": 3,
+      "value": 20,
+      "url": "https://thewhip.com",
+      "is_external_site_node": true
     }
   ],
   "edges": [
     {
       "from": "/",
-      "to": "/about/",
+      "to": "/posts/",
       "arrows": "to",
       "length": 200
     },
     {
       "from": "/",
-      "to": "/categories/",
+      "to": "/progetti/",
       "arrows": "to",
       "length": 200
     },
@@ -86,9 +149,234 @@
     },
     {
       "from": "/",
-      "to": "/posts/",
+      "to": "/about/",
       "arrows": "to",
       "length": 200
+    },
+    {
+      "from": "/404.html",
+      "to": "/",
+      "arrows": "to"
+    },
+    {
+      "from": "/404.html",
+      "to": "/posts/",
+      "arrows": "to"
+    },
+    {
+      "from": "/404.html",
+      "to": "/progetti/",
+      "arrows": "to"
+    },
+    {
+      "from": "/404.html",
+      "to": "/tags/",
+      "arrows": "to"
+    },
+    {
+      "from": "/404.html",
+      "to": "/about/",
+      "arrows": "to"
+    },
+    {
+      "from": "/about/",
+      "to": "/",
+      "arrows": "to"
+    },
+    {
+      "from": "/about/",
+      "to": "/posts/",
+      "arrows": "to"
+    },
+    {
+      "from": "/about/",
+      "to": "/progetti/",
+      "arrows": "to"
+    },
+    {
+      "from": "/about/",
+      "to": "/tags/",
+      "arrows": "to"
+    },
+    {
+      "from": "/about/",
+      "to": "https://s-e-a-m.github.io/alice-cortegiani/",
+      "arrows": "to"
+    },
+    {
+      "from": "/about/",
+      "to": "https://s-e-a-m.github.io/giulio-romano-de-mattia/",
+      "arrows": "to"
+    },
+    {
+      "from": "/about/",
+      "to": "https://s-e-a-m.github.io/luca-spanedda/",
+      "arrows": "to"
+    },
+    {
+      "from": "/about/",
+      "to": "https://www.davidetedesco.it",
+      "arrows": "to"
+    },
+    {
+      "from": "/about/",
+      "to": "https://s-e-a-m.github.com/giuseppe-silvi/",
+      "arrows": "to"
+    },
+    {
+      "from": "/about/",
+      "to": "https://s-e-a-m.github.io/francesco-ferracuti/",
+      "arrows": "to"
+    },
+    {
+      "from": "/about/",
+      "to": "https://thewhip.com",
+      "arrows": "to"
+    },
+    {
+      "from": "/posts/",
+      "to": "/",
+      "arrows": "to"
+    },
+    {
+      "from": "/posts/",
+      "to": "/progetti/",
+      "arrows": "to"
+    },
+    {
+      "from": "/posts/",
+      "to": "/tags/",
+      "arrows": "to"
+    },
+    {
+      "from": "/posts/",
+      "to": "/about/",
+      "arrows": "to"
+    },
+    {
+      "from": "/posts/",
+      "to": "/blog/welcome-to-jekyll/",
+      "arrows": "to"
+    },
+    {
+      "from": "/posts/",
+      "to": "/blog/post-alo/",
+      "arrows": "to"
+    },
+    {
+      "from": "/progetti/",
+      "to": "/",
+      "arrows": "to"
+    },
+    {
+      "from": "/progetti/",
+      "to": "/posts/",
+      "arrows": "to"
+    },
+    {
+      "from": "/progetti/",
+      "to": "/tags/",
+      "arrows": "to"
+    },
+    {
+      "from": "/progetti/",
+      "to": "/about/",
+      "arrows": "to"
+    },
+    {
+      "from": "/tags/",
+      "to": "/",
+      "arrows": "to"
+    },
+    {
+      "from": "/tags/",
+      "to": "/posts/",
+      "arrows": "to"
+    },
+    {
+      "from": "/tags/",
+      "to": "/progetti/",
+      "arrows": "to"
+    },
+    {
+      "from": "/tags/",
+      "to": "/about/",
+      "arrows": "to"
+    },
+    {
+      "from": "/tags/",
+      "to": "/blog/post-alo/",
+      "arrows": "to"
+    },
+    {
+      "from": "/tags/",
+      "to": "/blog/welcome-to-jekyll/",
+      "arrows": "to"
+    },
+    {
+      "from": "/blog/post-alo/",
+      "to": "/",
+      "arrows": "to"
+    },
+    {
+      "from": "/blog/post-alo/",
+      "to": "/posts/",
+      "arrows": "to"
+    },
+    {
+      "from": "/blog/post-alo/",
+      "to": "/progetti/",
+      "arrows": "to"
+    },
+    {
+      "from": "/blog/post-alo/",
+      "to": "/tags/",
+      "arrows": "to"
+    },
+    {
+      "from": "/blog/post-alo/",
+      "to": "/about/",
+      "arrows": "to"
+    },
+    {
+      "from": "/blog/post-alo/",
+      "to": "https://www.davidetedesco.it",
+      "arrows": "to"
+    },
+    {
+      "from": "/blog/post-alo/",
+      "to": "/blog/welcome-to-jekyll/",
+      "arrows": "to"
+    },
+    {
+      "from": "/blog/welcome-to-jekyll/",
+      "to": "/",
+      "arrows": "to"
+    },
+    {
+      "from": "/blog/welcome-to-jekyll/",
+      "to": "/posts/",
+      "arrows": "to"
+    },
+    {
+      "from": "/blog/welcome-to-jekyll/",
+      "to": "/progetti/",
+      "arrows": "to"
+    },
+    {
+      "from": "/blog/welcome-to-jekyll/",
+      "to": "/tags/",
+      "arrows": "to"
+    },
+    {
+      "from": "/blog/welcome-to-jekyll/",
+      "to": "/about/",
+      "arrows": "to"
+    },
+    {
+      "from": "/blog/welcome-to-jekyll/",
+      "to": "/blog/post-alo/",
+      "arrows": "to"
     }
   ]
 }

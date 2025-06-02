@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         strokeWidth: 3,   // Bordo attorno al testo per leggibilità
                         strokeColor: '#252a34' // Colore del bordo testo (uguale allo sfondo pagina per effetto "cutout")
                     },
-                    borderWidth: 2,       // Spessore del bordo del nodo
-                    borderWidthSelected: 3,
+                    borderWidth: 0,       // Spessore del bordo del nodo
+                    borderWidthSelected: 0,
                     shadow: {
                         enabled: true,
                         color: 'rgba(0,0,0,0.4)',
@@ -108,11 +108,12 @@ document.addEventListener('DOMContentLoaded', function () {
                             background: '#4CAF50', // Verde
                             border: '#4CAF50',     // <--- BORDO DELLO STESSO COLORE
                             highlight: { background: '#66BB6A', border: '#66BB6A'}, 
-                            hover: { background: '#66BB6A', border: '#66BB6A'} 
+                            hover: { background: '#66BB6A', border: '#66BB6A'},
+                            borderWidth: 1
                         },
                         shape: 'star',
                         font: { size: 18, color: '#ffffff', face: 'Georgia', strokeWidth: 4, strokeColor: '#252a34' },
-                        borderWidth: 3,
+                        borderWidth: 0,
                     },
                     1: { // Nodi Principali (dalla navigazione)
                         color: { 
@@ -131,6 +132,25 @@ document.addEventListener('DOMContentLoaded', function () {
                             highlight: { background: '#F58C6B', border: '#F58C6B'}, 
                             hover: { background: '#F58C6B', border: '#F58C6B'}  
                         },
+                    },
+                    3: { // SITI AUTORI ESTERNI
+                        color: { 
+                            background: '#9C27B0', // Viola
+                            border: '#7B1FA2',
+                            highlight: { background: '#BA68C8', border: '#9C27B0'}, 
+                            hover: { background: '#BA68C8', border: '#9C27B0'} 
+                        },
+                        shape: 'icon', // Potremmo provare a usare icone, o un'altra forma
+                        icon: {
+                            face: "'Font Awesome 5 Free'", // Assicurati che FontAwesome sia caricato
+                            weight: "900", // Per icone solide di FA
+                            code: '\uf0c1', // Codice unicode per fa-link (esempio)
+                            size: 30,      // Dimensione dell'icona dentro il nodo
+                            color: '#ffffff' // Colore dell'icona
+                        },
+                        // Alternativa se non usi icone:
+                        // shape: 'hexagon',
+                        font: { color: '#ffffff', strokeWidth: 2, strokeColor: '#1c1f26' } // Etichetta bianca
                     }
                 }
             };

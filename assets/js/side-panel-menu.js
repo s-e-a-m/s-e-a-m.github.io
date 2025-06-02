@@ -1,47 +1,40 @@
 ---
-# Front matter vuoto per abilitare il processing Liquid se necessario (non serve per questo script specifico)
+# Front matter vuoto
 ---
 document.addEventListener('DOMContentLoaded', function () {
   const openMenuBtn = document.getElementById('openMenuBtn');
   const closeMenuBtn = document.getElementById('closeMenuBtn');
   const sidePanel = document.getElementById('sidePanel');
-  // const graphContainerWrapper = document.getElementById('graph-container-wrapper'); // Decommenta se usi lo shift
+  const graphContainerWrapper = document.getElementById('graph-container-wrapper'); // Contenitore del grafo
 
-  if (openMenuBtn && sidePanel) { // Controlla che gli elementi esistano
-    openMenuBtn.addEventListener('click', () => {
+  if (openMenuBtn && sidePanel) {
+    openMenuBtn.addEventListener('click', (event) => {
+      event.stopPropagation(); // Impedisce che questo click venga catturato dal listener sul document (Metodo 2)
       sidePanel.classList.add('is-open');
-      // Se vuoi che il contenuto del grafo si sposti:
-      // graphContainerWrapper.classList.add('shifted-right');
     });
   }
 
-  if (closeMenuBtn && sidePanel) { // Controlla che gli elementi esistano
-    closeMenuBtn.addEventListener('click', () => {
+  if (closeMenuBtn && sidePanel) {
+    closeMenuBtn.addEventListener('click', (event) => {
+      event.stopPropagation(); // Impedisce che questo click venga catturato dal listener sul document
       sidePanel.classList.remove('is-open');
-      // Se hai spostato il contenuto del grafo:
-      // graphContainerWrapper.classList.remove('shifted-right');
     });
   }
 
-  // Opzionale: chiudi il menu se si clicca fuori dal pannello (o si preme Esc)
-  // Questa parte è un po' più complessa da rendere robusta
-  // document.addEventListener('click', function(event) {
-  //   if (sidePanel && sidePanel.classList.contains('is-open')) {
-  //     const isClickInsidePanel = sidePanel.contains(event.target);
-  //     const isClickOnOpenButton = openMenuBtn ? openMenuBtn.contains(event.target) : false;
+  // NUOVA PARTE: Chiudi il menu se si clicca sul contenitore del grafo
+  if (graphContainerWrapper && sidePanel) {
+    graphContainerWrapper.addEventListener('click', () => {
+      if (sidePanel.classList.contains('is-open')) {
+        sidePanel.classList.remove('is-open');
+      }
+    });
+  }
 
-  //     if (!isClickInsidePanel && !isClickOnOpenButton) {
-  //       sidePanel.classList.remove('is-open');
-  //       // graphContainerWrapper.classList.remove('shifted-right');
-  //     }
-  //   }
-  // });
-
-  // document.addEventListener('keydown', function(event) {
-  //   if (event.key === "Escape" && sidePanel && sidePanel.classList.contains('is-open')) {
-  //     sidePanel.classList.remove('is-open');
-  //     // graphContainerWrapper.classList.remove('shifted-right');
-  //   }
-  // });
+  // Opzionale: chiudi il menu se si preme il tasto Escape
+  document.addEventListener('keydown', function(event) {
+    if (event.key === "Escape" && sidePanel && sidePanel.classList.contains('is-open')) {
+      sidePanel.classList.remove('is-open');
+    }
+  });
 
 });
