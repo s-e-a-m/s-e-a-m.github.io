@@ -21,9 +21,29 @@ _Sustained Electro-Acoustic Music_ is a project inspired by [Alvise Vidolin and 
 
 ## Contributors:
 
- - [Alice Cortegiani](http://s-e-a-m.github.io/alice-cortegiani/)
- - [Giulio Romano De Mattia](http://s-e-a-m.github.io/giulio-romano-de-mattia/)
- - [Francesco Ferracuti](http://s-e-a-m.github.io/francesco-ferracuti/)
- - [Davide Tedesco](http://s-e-a-m.github.io/davide-tedesco/)
- - [Giuseppe Silvi](http://s-e-a-m.github.io/giuseppe-silvi/)
- - [Luca Spanedda]()
+{% if site.data.authors %}
+  <ul>
+    {% for author_hash_pair in site.data.authors %}
+      {% assign author_key = author_hash_pair[0] %} 
+      {% assign author_data = author_hash_pair[1] %}
+
+      {% assign author_website_url = nil %}
+      {% for link in author_data.links %}
+        {% if link.label == "Website" %}
+          {% assign author_website_url = link.url %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+
+      <li>
+        {% if author_website_url %}
+          <a href="{{ author_website_url }}">{{ author_data.name }}</a>
+        {% else %}
+          {{ author_data.name }} 
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Informazioni sui contributor non disponibili.</p>
+{% endif %}

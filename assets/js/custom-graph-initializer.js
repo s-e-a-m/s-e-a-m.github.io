@@ -1,5 +1,5 @@
 ---
-# Front matter per abilitare Liquid
+# Front matter per abilitare il processing Liquid (per relative_url)
 ---
 document.addEventListener('DOMContentLoaded', function () {
     const container = document.getElementById('graph-container');
@@ -22,126 +22,154 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
+            // Pre-elabora i nodi per nascondere le etichette inizialmente
+            // e salvare l'etichetta originale per mostrarla al hover
+            graphData.nodes.forEach(node => {
+                node.originalLabel = node.label; // Salva l'etichetta originale
+                node.label = ''; // Imposta l'etichetta a stringa vuota per nasconderla
+                // Assicurati che il tooltip (title) mostri l'etichetta originale se l'etichetta è nascosta
+                if (!node.title) { // Se non c'è già un title esplicito
+                    node.title = node.originalLabel;
+                }
+            });
+
             const options = {
                 nodes: {
-                    shape: 'dot', // Mantiene i nodi come punti, la dimensione è data da 'value'
-                    // size: 15, // Dimensione di default se 'value' non è specificato
-                    font: {
-                        size: 15,
-                        face: '"Helvetica Neue", Helvetica, Arial, sans-serif', // Font più leggibile
-                        color: '#e0e0e0', // Colore testo etichetta nodo (chiaro per sfondo scuro)
-                        strokeWidth: 0, // Nessun bordo attorno al testo
-                        // strokeColor: '#222' // Colore bordo testo (se strokeWidth > 0)
+                    shape: 'dot',
+                    font: { // Queste opzioni si applicheranno quando l'etichetta diventa visibile
+                        size: 16, // Dimensione quando visibile
+                        face: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+                        color: '#FFFFFF', // Colore testo etichetta (bianco per contrasto su sfondo scuro)
+                        strokeWidth: 3,   // Bordo attorno al testo per leggibilità
+                        strokeColor: '#252a34' // Colore del bordo testo (uguale allo sfondo pagina per effetto "cutout")
                     },
-                    borderWidth: 2,
+                    borderWidth: 2,       // Spessore del bordo del nodo
                     borderWidthSelected: 3,
                     shadow: {
                         enabled: true,
-                        color: 'rgba(0,0,0,0.3)',
-                        size: 5,
-                        x: 2,
-                        y: 2
+                        color: 'rgba(0,0,0,0.4)',
+                        size: 7,
+                        x: 3,
+                        y: 3
                     },
-                    // color: {} // Definito dai gruppi sotto
+                    // I colori specifici (background e border) saranno gestiti dai gruppi
                 },
                 edges: {
-                    width: 1,
+                    width: 1.5, // Leggermente più spessi
                     color: {
-                        color: '#4A5568', // Grigio scuro per gli archi (Tailwind gray-600)
-                        highlight: '#718096', // Grigio più chiaro per highlight (Tailwind gray-500)
-                        hover: '#718096',
-                        opacity: 0.6
+                        color: '#5A677D', // Grigio-blu per gli archi
+                        highlight: '#8A9BB3',
+                        hover: '#8A9BB3',
+                        opacity: 0.5 // Leggermente meno opachi
                     },
                     arrows: {
                         to: {
-                            enabled: true,
-                            scaleFactor: 0.6,
-                            type: 'arrow'
+                            enabled: false, // LASCIALO TRUE PER QUESTO TEST
+                            scaleFactor: .01, // Rendi le frecce ENORMI
+                            type: 'box' // Cambia il tipo di freccia (altri tipi: 'circle', 'diamond', 'vee', 'bar')
                         }
                     },
                     smooth: {
                         enabled: true,
-                        type: "continuous", // 'dynamic' o 'continuous' per un look più organico
+                        type: "continuous", // Mantiene gli archi curvi
                         roundness: 0.5
                     }
                 },
-                physics: {
-                    enabled: true,
-                    solver: 'forceAtlas2Based', // Spesso dà buoni risultati per grafi di conoscenza
+                physics: { // Mantieni le impostazioni di fisica che preferisci
+                    enabled: true, // Manteniamo la fisica attiva per l'effetto fluttuante
+                    solver: 'forceAtlas2Based',
                     forceAtlas2Based: {
-                        gravitationalConstant: -35, // Più basso, meno compatto
-                        centralGravity: 0.005,     // Tira leggermente verso il centro
-                        springLength: 100,
-                        springConstant: 0.18,
-                        damping: 0.6,              // Quanto velocemente si stabilizza
-                        avoidOverlap: 0.7          // Evita che i nodi si sovrappongano molto
+                        gravitationalConstant: -45,
+                        centralGravity: 0.003,
+                        springLength: 150,
+                        springConstant: 0.05,
+                        damping: 0.2, // Basso damping per più fluttuazione
+                        avoidOverlap: 0.6
                     },
-                    // barnesHut: { // Alternativa a forceAtlas2Based
-                    //   gravitationalConstant: -8000,
-                    //   centralGravity: 0.3,
-                    //   springLength: 120,
-                    //   springConstant: 0.05,
-                    //   damping: 0.09,
-                    //   avoidOverlap: 0.1
-                    // },
                     stabilization: {
                         enabled: true,
-                        iterations: 1000, // Prova a farlo stabilizzare
+                        iterations: 400,
                         fit: true
                     }
                 },
                 interaction: {
-                    hover: true,          // Abilita hover su nodi/archi
-                    dragNodes: true,      // Permetti di trascinare i nodi
-                    dragView: true,       // Permetti di trascinare la vista (pan)
-                    zoomView: true,       // Permetti lo zoom
-                    tooltipDelay: 200,
-                    navigationButtons: true, // Mostra i pulsanti di navigazione +/-/fit
-                    keyboard: true        // Abilita navigazione da tastiera
+                    hover: true, // FONDAMENTALE per gli eventi hover
+                    dragNodes: true,
+                    dragView: true,
+                    zoomView: true,
+                    tooltipDelay: 100, // Riduci il delay per il tooltip (che ora mostra il nome)
+                    navigationButtons: false,
+                    keyboard: true
                 },
                 groups: {
-                    1: { // Nodi Principali (dalla navigazione)
-                        color: { background: '#5DA5DA', border: '#4A89C1', highlight: { background: '#82C0E6', border: '#5DA5DA'}, hover: { background: '#82C0E6', border: '#5DA5DA'} },
-                        shape: 'ellipse', // Forma diversa per i principali
-                        // font: { size: 16, color: '#ffffff' } // Font leggermente più grande e bianco
+                    0: { // NODO CENTRALE MAPPA
+                        // Il colore del bordo sarà uguale a quello di background se non specificato diversamente qui
+                        color: { 
+                            background: '#4CAF50', // Verde
+                            border: '#4CAF50',     // <--- BORDO DELLO STESSO COLORE
+                            highlight: { background: '#66BB6A', border: '#66BB6A'}, 
+                            hover: { background: '#66BB6A', border: '#66BB6A'} 
+                        },
+                        shape: 'star',
+                        font: { size: 18, color: '#ffffff', face: 'Georgia', strokeWidth: 4, strokeColor: '#252a34' },
+                        borderWidth: 3,
                     },
-                    2: { // Nodi Normali
-                        color: { background: '#F15A24', border: '#D43D0C', highlight: { background: '#F58C6B', border: '#F15A24'}, hover: { background: '#F58C6B', border: '#F15A24'}  },
-                        // shape: 'dot' // Default
+                    1: { // Nodi Principali (dalla navigazione)
+                        color: { 
+                            background: '#5DA5DA', // Blu
+                            border: '#5DA5DA',     // <--- BORDO DELLO STESSO COLORE
+                            highlight: { background: '#82C0E6', border: '#82C0E6'}, 
+                            hover: { background: '#82C0E6', border: '#82C0E6'} 
+                        },
+                        shape: 'ellipse',
+                        font: { size: 17, strokeWidth: 3, strokeColor: '#252a34' } // Eredita colore testo da nodes.font
+                    },
+                    2: { // Nodi Normali (altre pagine/post)
+                        color: { 
+                            background: '#F15A24', // Arancione
+                            border: '#F15A24',     // <--- BORDO DELLO STESSO COLORE
+                            highlight: { background: '#F58C6B', border: '#F58C6B'}, 
+                            hover: { background: '#F58C6B', border: '#F58C6B'}  
+                        },
                     }
                 }
             };
 
             const network = new vis.Network(container, graphData, options);
 
+            // Evento per mostrare l'etichetta al HOVER sul nodo
+            network.on("hoverNode", function (params) {
+                const nodeId = params.node;
+                // network.body.data.nodes è il DataSet che contiene i nodi
+                // Per aggiornare un nodo, passiamo un oggetto con il suo id e le proprietà da cambiare
+                const nodeData = network.body.data.nodes.get(nodeId);
+                if (nodeData && nodeData.originalLabel) {
+                    network.body.data.nodes.update({id: nodeId, label: nodeData.originalLabel});
+                }
+            });
+
+            // Evento per nascondere l'etichetta quando il mouse LASCIA il nodo
+            network.on("blurNode", function (params) {
+                const nodeId = params.node;
+                network.body.data.nodes.update({id: nodeId, label: ''}); // Reimposta a stringa vuota
+            });
+
             network.on("selectNode", function (params) {
                 if (params.nodes.length > 0) {
                     const nodeId = params.nodes[0];
-                    // Cerca il nodo nei dati originali per ottenere l'URL
-                    const nodeData = graphData.nodes.find(n => n.id === nodeId);
+                    const nodeData = network.body.data.nodes.get(nodeId); 
                     if (nodeData && nodeData.url) {
-                        // Se il nodo ha un URL, naviga a quell'URL
-                        // Potresti voler aprire in una nuova scheda: window.open(nodeData.url, '_blank');
                         window.location.href = nodeData.url;
+                    } else {
+                        console.warn("Nodo selezionato non ha un URL:", nodeData);
                     }
                 }
             });
 
-            // Dopo un certo numero di iterazioni di stabilizzazione, ferma la simulazione fisica
-            // per evitare che il grafo si muova all'infinito e risparmiare CPU.
+            // Non fermare la fisica se vuoi un effetto fluttuante continuo
             // network.on("stabilizationIterationsDone", function () {
-            //   console.log("Graph stabilization complete, stopping physics.");
-            //   network.setOptions( { physics: false } );
+            //   network.setOptions( { physics: { enabled: false } } );
             // });
-
-            // Alternativa: ferma la fisica dopo un timeout se la stabilizzazione non è sufficiente
-            // setTimeout(() => {
-            //    if (network.physics.options.enabled) {
-            //        console.log("Stopping physics after timeout.");
-            //        network.setOptions({ physics: false });
-            //    }
-            // }, 15000); // Ferma dopo 15 secondi
-
 
         })
         .catch(error => {

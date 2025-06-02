@@ -1,6 +1,14 @@
 {
   "nodes": [
     {
+      "id": "/",
+      "label": "S-E-A-M",
+      "title": "Nodo centrale della mappa del sito",
+      "group": 0,
+      "value": 35,
+      "url": "/"
+    },
+    {
       "id": "/404.html",
       "label": "Page Not Found",
       "title": "Page Not Found",
@@ -18,19 +26,11 @@
     },
     {
       "id": "/categories/",
-      "label": "Posts by Category",
-      "title": "Posts by Category",
+      "label": "Progetti",
+      "title": "Progetti",
       "group": 1,
       "value": 25,
       "url": "/categories/"
-    },
-    {
-      "id": "/",
-      "label": "Welcome",
-      "title": "Welcome",
-      "group": 2,
-      "value": 12,
-      "url": "/"
     },
     {
       "id": "/tags/",
@@ -65,5 +65,30 @@
       "url": "/blog/welcome-to-jekyll/"
     }
   ],
-  "edges": []
+  "edges": [
+    {
+      "from": "/",
+      "to": "/about/",
+      "arrows": "to",
+      "length": 200
+    },
+    {
+      "from": "/",
+      "to": "/categories/",
+      "arrows": "to",
+      "length": 200
+    },
+    {
+      "from": "/",
+      "to": "/tags/",
+      "arrows": "to",
+      "length": 200
+    },
+    {
+      "from": "/",
+      "to": "/posts/",
+      "arrows": "to",
+      "length": 200
+    }
+  ]
 }
