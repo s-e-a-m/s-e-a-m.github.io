@@ -1,0 +1,22 @@
+// _sass/custom/_variables.scss
+// Variabili di Minimal Mistakes che potresti voler referenziare o sovrascrivere
+// (assicurati che questi nomi corrispondano a quelli usati da MM se li prendi da lì)
+$link-color: #4183c4 !default; 
+$border-radius: 4px !default;
+$sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$type-size-5: 1.25em !default; // ~20px
+$type-size-6: 1.125em !default; // ~18px (adattato da 1em per più leggibilità)
+
+// Variabili specifiche per il tuo tema grafo/pannello
+$graph-page-bg-color: #252a34;
+$main-text-color-on-dark-bg: #cccccc;
+
+$side-panel-width: 280px;
+$side-panel-bg-color: #1c1f26;
+$side-panel-text-color: #dfe3e8; 
+$side-panel-text-hover-color: #ffffff;
+$side-panel-title-color: #ffffff;
+$side-panel-link-hover-bg: rgba(50, 55, 65, 0.7); // Leggermente più opaco
+$side-panel-border-color: rgba(255, 255, 255, 0.1);
+$side-panel-transition-duration: 0.3s;
+$side-panel-transition-timing: ease-in-out;

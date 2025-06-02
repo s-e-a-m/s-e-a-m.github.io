@@ -2,36 +2,27 @@
 # _layouts/graph-canvas.html
 ---
 <!doctype html>
-<html lang="{{ site.locale | slice: 0,2 | default: "en" }}" class="no-js">
+<html lang="{{ site.locale | slice: 0,2 | default: "en" }}" class="no-js layout--graph-canvas"> 
   <head>
     {% include head.html %} 
     {% include head/custom.html %}
-    <style>
-      /* Solo stili ESSENZIALI per il layout a schermo intero, il resto è in _side-panel.scss */
-      html, body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        background-color: #ffffff; /* O la tua variabile $background-color se accessibile qui */
-      }
-      .graph-container { /* Il div che conterrà il grafo */
-        width: 100%;
-        height: 100%;
-        position: relative; /* Per posizionare il pulsante del menu rispetto ad esso */
-      }
-    </style>
   </head>
   <body class="layout--graph-canvas">
+    <div id="graphNodeTooltip" class="graph-node-tooltip" style="display: none; opacity: 0;">
+      <h4 id="tooltipNodeTitle">Titolo del Nodo</h4>
+      <p id="tooltipNodeExcerpt">Qui andrà l'excerpt del nodo...</p>
+      <small>Clicca per visitare la pagina.</small>
+    </div>
 
-    <!-- Pannello Laterale del Menu -->
+      
     <div id="sidePanel" class="side-panel">
-      <div class="side-panel__header">
-        <h3 class="side-panel__title">S-E-A-M</h3> 
-        <button class="close-btn" id="closeMenuBtn" aria-label="Close menu">×</button>
+      <div class="side-panel__header" style="height: 60px;">
       </div>
       <nav class="side-panel__nav" aria-label="Main navigation">
+        
+        <a href="{{ '/' | relative_url }}">{{ site.title }}</a> 
+        <hr> 
+
         {% if site.data.navigation.main %}
           {% for item in site.data.navigation.main %}
             <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
@@ -39,24 +30,32 @@
         {% else %}
           <a href="#">Configura <code>_data/navigation.yml</code></a>
         {% endif %}
-        <hr>
-        <a href="{{ '/' | relative_url }}">Visualizzazione Grafo</a>
       </nav>
     </div>
 
-    <!-- Contenitore del Grafo e Pulsante Toggle Menu -->
+    
     <div id="graph-container-wrapper">
       <button class="menu-toggle" id="openMenuBtn" aria-label="Open menu">
         ☰
       </button>
+      <button class="menu-toggle menu-toggle--close" id="closeMenuBtn" aria-label="Close menu" style="display: none;">
+        ×
+      </button>
+
       <div id="graph-container" class="graph-container">
         <!-- Il grafo JavaScript verrà renderizzato qui -->
       </div>
+      <div id="graphLegend" class="graph-legend" style="display: none;">
+        <h4>Legenda</h4>
+        <ul>
+          <!-- Contenuto generato da JS -->
+        </ul>
+      </div>
     </div>
-
+    
+    <!-- Script JS -->
     <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
     <script src="{{ '/assets/js/custom-graph-initializer.js' | relative_url }}"></script>
-
     <script src="{{ '/assets/js/side-panel-menu.js' | relative_url }}"></script>
   </body>
 </html>

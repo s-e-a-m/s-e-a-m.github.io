@@ -1,0 +1,34 @@
+// _sass/custom/_graph-layout.scss
+
+// Stili essenziali per il layout a schermo intero della pagina del grafo.
+// Questi si applicano quando body ha la classe .layout--graph-canvas.
+$graph-page-bg-color: #ffffff;
+
+html.layout--graph-canvas, // Applica a <html> solo quando <body> ha .layout--graph-canvas
+body.layout--graph-canvas {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; // Impedisce lo scroll della pagina principale
+  background-color: $graph-page-bg-color; // Definisci questa variabile o usa un colore hardcoded
+                                        // es. #252a34 (sfondo scuro) o #ffffff (bianco)
+  font-family: $sans-serif; // Eredita il font di MM (se $sans-serif è disponibile)
+  position: relative; // Rende il body un blocco di contenimento per il side-panel se necessario
+}
+
+// Wrapper principale per il contenuto del grafo, il pulsante menu, e la legenda
+#graph-container-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative; // Blocco di contenimento cruciale
+}
+
+// Contenitore effettivo per la libreria Vis.js
+#graph-container {
+  width: 100%;
+  height: 100%;
+  position: relative; // Spesso richiesto dalla libreria Vis.js per i suoi elementi interni
+  // background-color: lighten($graph-page-bg-color, 5%); // Opzionale: sfondo leggermente diverso per il grafo
+  // border: 1px solid red; // DEBUG
+}

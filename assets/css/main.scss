@@ -3,8 +3,13 @@
 search: false
 ---
 
+@import "custom/variables"; // 1. Le TUE variabili custom (e eventuali sovrascritture di MM)
+
 @charset "utf-8";
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
-@import "custom/side-panel"; // NUOVO: Importa gli stili del pannello laterale
+@import "custom/graph-layout";    
+@import "custom/side-panel";    
+@import "custom/graph-tooltip"; 
+@import "custom/graph-legend";

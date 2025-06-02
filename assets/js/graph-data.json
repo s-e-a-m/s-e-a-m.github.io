@@ -2,8 +2,9 @@
   "nodes": [
     {
       "id": "/",
-      "label": "Mappa del Sito",
-      "title": "Nodo centrale",
+      "label": "S-E-A-M",
+      "originalLabel": "S-E-A-M",
+      "excerpt": "Questo è il punto di partenza per esplorare il sito.",
       "group": 0,
       "value": 35,
       "url": "/"
@@ -11,7 +12,8 @@
     {
       "id": "/404.html",
       "label": "Page Not Found",
-      "title": "Page Not Found",
+      "originalLabel": "Page Not Found",
+      "excerpt": "Page not found. Your pixels are in another canvas.",
       "group": 2,
       "value": 12,
       "url": "/404.html"
@@ -19,7 +21,8 @@
     {
       "id": "/about/",
       "label": "About",
-      "title": "About",
+      "originalLabel": "About",
+      "excerpt": "_Sustained Electro-Acoustic Music_ is a project inspired by [Alvise Vidolin and Nicola Bernardini](https://www.academia.edu/16348988/Sustainable_live_electro-acoustic_music). ## SEAM meaning > **seam** \\| siːm \\| > noun > 1. a line where two pieces...",
       "group": 1,
       "value": 25,
       "url": "/about/"
@@ -27,7 +30,8 @@
     {
       "id": "/posts/",
       "label": "Posts per Autore",
-      "title": "Posts per Autore",
+      "originalLabel": "Posts per Autore",
+      "excerpt": "Nessuna descrizione disponibile.",
       "group": 1,
       "value": 25,
       "url": "/posts/"
@@ -35,7 +39,8 @@
     {
       "id": "/progetti/",
       "label": "Progetti",
-      "title": "Progetti",
+      "originalLabel": "Progetti",
+      "excerpt": "Nessuna descrizione disponibile.",
       "group": 1,
       "value": 25,
       "url": "/progetti/"
@@ -43,7 +48,8 @@
     {
       "id": "/tags/",
       "label": "Posts per Tag",
-      "title": "Posts per Tag",
+      "originalLabel": "Posts per Tag",
+      "excerpt": "Nessuna descrizione disponibile.",
       "group": 1,
       "value": 25,
       "url": "/tags/"
@@ -51,7 +57,8 @@
     {
       "id": "/blog/post-alo/",
       "label": "Post: Standard",
-      "title": "Post: Standard",
+      "originalLabel": "Post: Standard",
+      "excerpt": "All children, except one, grow up. They soon know that they will grow up, and the way Wendy knew was this. One day when she was two years old she was playing in a garden, and she plucked another flower and ran with it to her mother. I suppose she must have looked rather delightful, for Mrs. Darling put her hand to her heart and cried, “Oh, why can’t you remain like this for ever!” This was all that passed between them on the subject, but henceforth Wendy knew that she must grow up. You always know after you are two. Two is the beginning of the end. Mrs. Darling first heard of Peter when she was tidying up her children’s minds. It is the nightly custom of every good mother after her children are asleep to rummage in their minds and put things straight for next morning, repacking into their proper places the many articles that have wandered during the day.",
       "group": 2,
       "value": 12,
       "url": "/blog/post-alo/"
@@ -59,7 +66,8 @@
     {
       "id": "/blog/welcome-to-jekyll/",
       "label": "Welcome to Jekyll!",
-      "title": "Welcome to Jekyll!",
+      "originalLabel": "Welcome to Jekyll!",
+      "excerpt": "You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.",
       "group": 2,
       "value": 12,
       "url": "/blog/welcome-to-jekyll/"
@@ -67,7 +75,8 @@
     {
       "id": "https://s-e-a-m.github.io/alice-cortegiani/",
       "label": "Alice Cortegiani",
-      "title": "Sito di Alice Cortegiani",
+      "originalLabel": "Alice Cortegiani",
+      "excerpt": "Zebra Permanente",
       "group": 3,
       "value": 20,
       "url": "https://s-e-a-m.github.io/alice-cortegiani/",
@@ -76,7 +85,8 @@
     {
       "id": "https://s-e-a-m.github.io/giulio-romano-de-mattia/",
       "label": "Giulio Romano De Mattia",
-      "title": "Sito di Giulio Romano De Mattia",
+      "originalLabel": "Giulio Romano De Mattia",
+      "excerpt": "Ricordando giornalmente la nascita",
       "group": 3,
       "value": 20,
       "url": "https://s-e-a-m.github.io/giulio-romano-de-mattia/",
@@ -85,7 +95,8 @@
     {
       "id": "https://s-e-a-m.github.io/luca-spanedda/",
       "label": "Luca Spanedda",
-      "title": "Sito di Luca Spanedda",
+      "originalLabel": "Luca Spanedda",
+      "excerpt": "Bio ",
       "group": 3,
       "value": 20,
       "url": "https://s-e-a-m.github.io/luca-spanedda/",
@@ -94,7 +105,8 @@
     {
       "id": "https://www.davidetedesco.it",
       "label": "Davide Tedesco",
-      "title": "Sito di Davide Tedesco",
+      "originalLabel": "Davide Tedesco",
+      "excerpt": "sudo",
       "group": 3,
       "value": 20,
       "url": "https://www.davidetedesco.it",
@@ -103,7 +115,8 @@
     {
       "id": "https://s-e-a-m.github.com/giuseppe-silvi/",
       "label": "Giuseppe Silvi",
-      "title": "Sito di Giuseppe Silvi",
+      "originalLabel": "Giuseppe Silvi",
+      "excerpt": "Vivere è stare svegli.",
       "group": 3,
       "value": 20,
       "url": "https://s-e-a-m.github.com/giuseppe-silvi/",
@@ -112,7 +125,8 @@
     {
       "id": "https://s-e-a-m.github.io/francesco-ferracuti/",
       "label": "Francesco Ferracuti",
-      "title": "Sito di Francesco Ferracuti",
+      "originalLabel": "Francesco Ferracuti",
+      "excerpt": "sono ecosostenibile, sono bio",
       "group": 3,
       "value": 20,
       "url": "https://s-e-a-m.github.io/francesco-ferracuti/",
@@ -121,7 +135,8 @@
     {
       "id": "https://thewhip.com",
       "label": "Domenico Nasso",
-      "title": "Sito di Domenico Nasso",
+      "originalLabel": "Domenico Nasso",
+      "excerpt": "What do you want, jewels? I am a very extravagant man.",
       "group": 3,
       "value": 20,
       "url": "https://thewhip.com",
