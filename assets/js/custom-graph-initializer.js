@@ -1,12 +1,31 @@
 ---
 # Front matter per abilitare il processing Liquid (per relative_url)
 ---
+window.addEventListener('message', function(event) {
+  // Per sicurezza, potresti voler controllare event.origin se sai da dove provengono i messaggi
+  // if (event.origin !== 'http://127.0.0.1:4000') return; // Esempio
+
+  if (typeof event.data === 'string' && event.data.startsWith('[Iframe Log]')) {
+    console.log('(Received from Iframe) ' + event.data);
+  }
+});
 document.addEventListener('DOMContentLoaded', function () {
     const visContainer = document.getElementById('graph-container');
     const tooltipElement = document.getElementById('graphNodeTooltip');
     const tooltipTitleElement = document.getElementById('tooltipNodeTitle');
     const tooltipExcerptElement = document.getElementById('tooltipNodeExcerpt');
 
+    const bodyElement = document.body; 
+    const nodeContentPane = document.getElementById('node-content-pane');
+    const nodeContentTarget = document.getElementById('node-content-target');
+    const closeContentPaneBtn = document.getElementById('closeContentPaneBtn');
+    // const graphContainerWrapper = document.getElementById('graph-container-wrapper'); // Già definito nel tuo HTML, potrebbe servire per il resize
+    // Nota: graphContainerWrapper non è usato in questa prima fase del JS, ma tienilo a mente.
+
+    if (!nodeContentPane || !nodeContentTarget || !closeContentPaneBtn) {
+        console.warn("Elementi per il pannello contenuto nodo non trovati. La funzionalità di split view non sarà completa.");
+    }
+    
     if (!visContainer) {
         console.error('Graph container #graph-container not found! Il grafo non può essere inizializzato.');
         return;
@@ -168,6 +187,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
             let hoveredNodeId = null; 
 
+            function displayNodeInPanel(nodeData) {
+                if (!nodeContentPane || !nodeContentTarget) {
+                    console.error("Pannello contenuto o target non trovato per displayNodeInPanel");
+                    return;
+                }
+
+                if (nodeData && nodeData.url) {
+                   // Usa un iframe per caricare l'URL del nodo
+                    let iframeSrc = nodeData.url;
+                    if (iframeSrc.includes('?')) {
+                        iframeSrc += '&iframe=true';
+                    } else {
+                        iframeSrc += '?iframe=true';
+                    }
+                    nodeContentTarget.innerHTML = `<iframe src="${iframeSrc}" style="width:100%; height:100%; border:none;"></iframe>`;                    
+                    // Attiva la modalità split view
+                    bodyElement.classList.add('view-mode--split');
+                    
+                    // Adatta il grafo dopo la transizione CSS
+                    setTimeout(() => {
+                        if (network && typeof network.fit === 'function') {
+                            network.fit(); 
+                        }
+                    }, 450);
+                } else {
+                    // Se non c'è URL, potresti mostrare un messaggio o solo l'excerpt
+                    let contentHTML = `<h1>${nodeData.originalLabel || 'Dettagli Nodo'}</h1>`;
+                    contentHTML += `<p>${nodeData.excerpt || 'Nessuna descrizione o URL disponibile.'}</p>`;
+                    nodeContentTarget.innerHTML = contentHTML;
+                    // Non attivare la split view se non c'è contenuto principale da mostrare,
+                    // o gestiscilo come preferisci.
+                    bodyElement.classList.remove('view-mode--split'); // Esempio: chiudi se non c'è URL
+                    setTimeout(() => { if (network && typeof network.fit === 'function') network.fit(); }, 450);
+                }
+            }                    
+ 
+
             network.on("hoverNode", function (params) {
                 hoveredNodeId = params.node;
                 const nodeData = network.body.data.nodes.get(hoveredNodeId);
@@ -196,37 +252,86 @@ document.addEventListener('DOMContentLoaded', function () {
                     tooltipElement.classList.remove('is-visible');
                 }
             });
-            
-            visContainer.addEventListener('mousemove', function(event) {
-                if (hoveredNodeId && tooltipElement && tooltipElement.classList.contains('is-visible')) {
-                    const visRect = visContainer.getBoundingClientRect();
-                    let x = event.clientX - visRect.left + 15;
-                    let y = event.clientY - visRect.top + 15;
-                    const tooltipRect = tooltipElement.getBoundingClientRect(); 
-                    if (x + tooltipRect.width > visRect.width) {
-                        x = event.clientX - visRect.left - tooltipRect.width - 15;
-                    }
-                    if (y + tooltipRect.height > visRect.height) {
-                        y = event.clientY - visRect.top - tooltipRect.height - 15;
-                    }
-                    if (x < 0) x = 15;
-                    if (y < 0) y = 15;
-                    tooltipElement.style.left = x + 'px';
-                    tooltipElement.style.top = y + 'px';
+                    
+        visContainer.addEventListener('mousemove', function(event) {
+            if (hoveredNodeId && tooltipElement && tooltipElement.classList.contains('is-visible')) {
+                const visRect = visContainer.getBoundingClientRect();
+
+                // Calcola x, y RELATIVE ALL'INTERNO del visContainer
+                let x_relative_to_visContainer = event.clientX - visRect.left + 15;
+                let y_relative_to_visContainer = event.clientY - visRect.top + 15;
+
+                const tooltipCurrentRect = tooltipElement.getBoundingClientRect(); // Meglio prenderla prima degli aggiustamenti
+
+                // Logica di aggiustamento per non uscire dai bordi del visContainer
+                if (x_relative_to_visContainer + tooltipCurrentRect.width > visRect.width) {
+                    x_relative_to_visContainer = event.clientX - visRect.left - tooltipCurrentRect.width - 15;
                 }
-            });
+                if (y_relative_to_visContainer + tooltipCurrentRect.height > visRect.height) {
+                    y_relative_to_visContainer = event.clientY - visRect.top - tooltipCurrentRect.height - 15;
+                }
+                // Assicurati che non vada troppo a sinistra/sopra *all'interno* del visContainer
+                if (x_relative_to_visContainer < 0 && !(event.clientX - visRect.left - tooltipCurrentRect.width - 15 < 0) ) { 
+                    // Se non è già stato spostato a sinistra del cursore perché troppo a destra
+                    x_relative_to_visContainer = 15;
+                }
+                if (y_relative_to_visContainer < 0 && !(event.clientY - visRect.top - tooltipCurrentRect.height - 15 < 0) ) {
+                    y_relative_to_visContainer = 15;
+                }
+
+
+                // --- MODIFICA CRUCIALE QUI ---
+                // Ora converti queste coordinate relative a visContainer in coordinate 
+                // assolute rispetto al viewport (che per un tooltip figlio del body è ciò che serve)
+                let final_tooltip_left = visRect.left + x_relative_to_visContainer;
+                let final_tooltip_top = visRect.top + y_relative_to_visContainer;
+                
+                // Se il body scrolla (improbabile nel tuo caso con overflow:hidden, ma per sicurezza):
+                // final_tooltip_left += window.scrollX;
+                // final_tooltip_top += window.scrollY;
+
+
+                tooltipElement.style.left = final_tooltip_left + 'px';
+                tooltipElement.style.top = final_tooltip_top + 'px';
+            }
+        });
 
             network.on("selectNode", function (params) {
                 if (params.nodes.length > 0) {
                     const nodeId = params.nodes[0];
+                    // Assicurati che 'network' sia accessibile qui. Sì, lo è perché siamo nello stesso scope.
                     const nodeData = network.body.data.nodes.get(nodeId); 
-                    if (nodeData && nodeData.url) {
-                        window.location.href = nodeData.url;
+                    
+                    if (nodeData) {
+                        displayNodeInPanel(nodeData); // NUOVA LOGICA
                     } else {
-                        console.warn("Nodo selezionato non ha un URL:", nodeData);
+                        console.warn("Dati del nodo selezionato non trovati:", nodeId);
+                        // Potresti voler nascondere il pannello se i dati non ci sono
+                        bodyElement.classList.remove('view-mode--split');
+                        setTimeout(() => {
+                             if (network && typeof network.fit === 'function') {
+                                network.fit();
+                            }
+                        }, 450);
                     }
                 }
             });
+            if (closeContentPaneBtn) { // Assicurati che il bottone esista prima di aggiungere un listener
+                closeContentPaneBtn.addEventListener('click', function() {
+                    bodyElement.classList.remove('view-mode--split');
+                    if (nodeContentTarget) {            
+                        nodeContentTarget.innerHTML = ''; // Svuota il contenuto
+                    }
+                    // Adatta il grafo dopo la transizione CSS
+                    setTimeout(() => {
+                         if (network && typeof network.fit === 'function') {
+                            network.fit(); 
+                        }
+                    }, 450); 
+                });
+            } else {
+                console.warn("#closeContentPaneBtn non trovato nel DOM."); // Aggiungi un warning se non lo trova
+            }
 
         })
         .catch(error => {

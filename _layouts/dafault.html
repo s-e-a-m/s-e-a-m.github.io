@@ -1,0 +1,94 @@
+---
+---
+
+<!doctype html>
+{% include copyright.html %}
+<html lang="{{ site.locale | replace: "_", "-" | default: "en" }}" class="no-js">
+  <head>
+    {% include head.html %}
+    {% include head/custom.html %}
+
+    <!-- NUOVO SCRIPT PER NASCONDERE HEADER/FOOTER QUANDO IN IFRAME -->
+<!-- _layouts/default.html -->
+<!-- ... dentro <head> ... -->
+  <script>
+    function reportToParent(message) {
+      // Invia il messaggio alla finestra genitore (la pagina del grafo)
+      // Il secondo argomento '*' è per il targetOrigin, per semplicità in sviluppo locale.
+      // In produzione, dovresti specificare l'origine esatta del genitore.
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage('[Iframe Log] ' + message, '*');
+      }
+      // Logga anche nella console dell'iframe stesso, nel caso volessi controllarla separatamente
+      console.log('[Iframe Script] ' + message);
+    }
+
+    function hideNavInIframe() {
+      reportToParent('hideNavInIframe function called.');
+      reportToParent('Current page URL search params: ' + window.location.search);
+
+      if (window.location.search.includes('iframe=true')) {
+        reportToParent('"iframe=true" detected in URL.');
+
+        var masthead = document.querySelector('.masthead');
+        if (masthead) {
+          reportToParent('Masthead element found.');
+          masthead.style.display = 'none';
+          reportToParent('Masthead display set to none.');
+        } else {
+          reportToParent('Masthead element (.masthead) NOT found.');
+        }
+
+        var pageFooter = document.querySelector('.page__footer');
+        if (pageFooter) {
+          reportToParent('Footer element found.');
+          pageFooter.style.display = 'none';
+          reportToParent('Footer display set to none.');
+        } else {
+          reportToParent('Footer element (.page__footer) NOT found.');
+        }
+        
+        document.body.classList.add('is-in-iframe-content');
+        reportToParent('"is-in-iframe-content" class added to body.');
+
+      } else {
+        reportToParent('"iframe=true" NOT detected in URL.');
+      }
+    }
+
+    if (document.readyState === "loading") {
+      reportToParent('DOM is loading, will attach to DOMContentLoaded for default.html context.');
+      document.addEventListener('DOMContentLoaded', hideNavInIframe);
+    } else { 
+      reportToParent('DOM already loaded for default.html context, calling hideNavInIframe directly.');
+      hideNavInIframe();
+    }
+  </script>
+  <!-- ... -->
+</head>
+
+  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}" dir="{% if site.rtl %}rtl{% else %}ltr{% endif %}">
+    {% include_cached skip-links.html %}
+    {% include_cached masthead.html %}
+
+    <div class="initial-content">
+      {{ content }}
+      {% include after-content.html %}
+    </div>
+
+    {% if site.search == true %}
+      <div class="search-content">
+        {% include_cached search/search_form.html %}
+      </div>
+    {% endif %}
+
+    <div id="footer" class="page__footer">
+      <footer>
+        {% include footer/custom.html %}
+        {% include_cached footer.html %}
+      </footer>
+    </div>
+
+    {% include scripts.html %}
+  </body>
+</html>

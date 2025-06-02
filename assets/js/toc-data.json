@@ -1,0 +1,51 @@
+[
+  {
+    "id": "/about/",
+    "title": "About",
+    "url": "/about/",
+    "children": []
+  },
+  {
+    "id": "/blog/",
+    "title": "Blog",
+    "url": null,
+    "children": [
+      {
+        "id": "/blog/post-alo/",
+        "title": "Post: Standard",
+        "url": "/blog/post-alo/",
+        "children": []
+      },
+      {
+        "id": "/blog/welcome-to-jekyll/",
+        "title": "Welcome to Jekyll!",
+        "url": "/blog/welcome-to-jekyll/",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "/404.html",
+    "title": "Page Not Found",
+    "url": "/404.html",
+    "children": []
+  },
+  {
+    "id": "/posts/",
+    "title": "Posts per Autore",
+    "url": "/posts/",
+    "children": []
+  },
+  {
+    "id": "/tags/",
+    "title": "Posts per Tag",
+    "url": "/tags/",
+    "children": []
+  },
+  {
+    "id": "/progetti/",
+    "title": "Progetti",
+    "url": "/progetti/",
+    "children": []
+  }
+]
