@@ -8,24 +8,36 @@
   &__inner-wrap {
     // Riduci il padding verticale. Prova valori diversi.
     // La riga originale era "padding: 1em;"
-    padding-top: 0.1em;    // Esempio: ridotto drasticamente
-    padding-bottom: 0.1em; // Esempio: ridotto drasticamente
+    padding-top: 0.1em !important;    // Esempio: ridotto drasticamente
+    padding-bottom: 0.1em !important; // Esempio: ridotto drasticamente
     padding-left: 1em;     // Padding orizzontale, puoi lasciarlo o ridurlo
     padding-right: 1em;    // Padding orizzontale, puoi lasciarlo o ridurlo
+
   }
 }
-
+// 3. Ridurre la dimensione del font del titolo del sito
+.site-title {
+  font-size: 1em !important; // Riduci dal default se necessario (MM usa variabili come $type-size-3 o $type-size-4)
+                     // Potresti dover ispezionare per vedere il valore corrente e ridurlo 
+  margin-bottom: 0 !important; // Rimuovi eventuale margine inferiore se contribuisce all'altezza
+  line-height: 1.1 !important; // Riduci line-height per compattare
+}
 .site-logo img {
   // Riduci l'altezza massima del logo se ne usi uno e contribuisce all'altezza
   // La riga originale era "max-height: 2rem;"
-  max-height: 1.2rem; // Esempio: ridotto (circa 19px se 1rem = 16px)
+  max-height: 0px !important; // Esempio: ridotto (circa 19px se 1rem = 16px)
                        // Prova anche 25px, 30px
+}
+
+.greedy-nav button { // Il bottone "Menu" che appare su schermi piccoli
+  font-size: 0.8em !important; // Riduci dimensione bottone
+  padding: 0.3em 0.6em !important; // Riduci padding bottone
 }
 
 // Se i link del menu nel masthead sembrano troppo grandi o hanno troppo spazio:
 .greedy-nav a, // Selettore per i link nel menu "greedy" di MM
 .masthead__menu .site-nav a { // Selettore più generico per i link del menu
-  font-size: 0.8em; // Riduci la dimensione del font dei link del menu
-  padding-top: 0.4em;    // Riduci il padding verticale dei link
-  padding-bottom: 0.4em; // Riduci il padding verticale dei link
+  font-size: 0.55em; // Riduci la dimensione del font dei link del menu
+  padding-top: 0em !important;    // Riduci il padding verticale dei link
+  padding-bottom: 0em !important; // Riduci il padding verticale dei link
 }

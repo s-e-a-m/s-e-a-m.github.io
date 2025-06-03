@@ -2,25 +2,126 @@
 layout: default
 ---
 
-{% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
-  {% include page__hero.html %}
-{% elsif page.header.video.id and page.header.video.provider %}
-  {% include page__hero_video.html %}
-{% endif %}
+<div class="archive-layout-with-side-panel">
+  <main id="archive-main-content">
+    {% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
+      {% include page__hero.html %}
+    {% elsif page.header.video.id and page.header.video.provider %}
+      {% include page__hero_video.html %}
+    {% endif %}
 
-{% if page.url != "/" and site.breadcrumbs %}
-  {% unless paginator %}
-    {% include breadcrumbs.html %}
-  {% endunless %}
-{% endif %}
+    {% if page.url != "/" and site.breadcrumbs %}
+      {% unless paginator %}
+        {% include breadcrumbs.html %}
+      {% endunless %}
+    {% endif %}
 
-<div id="main" role="main">
-  {% include sidebar.html %}
+    <div id="main" role="main">
+      {% unless page.header.overlay_color or page.header.overlay_image %}
+        <h1 id="page-title" class="page__title"{% if page.locale %} lang="{{ page.locale }}"{% endif %}>{{ page.title }}</h1>
+      {% endunless %}
+      {{ content }}
+    </div>
+  </main>
 
-  <div class="archive">
-    {% unless page.header.overlay_color or page.header.overlay_image %}
-      <h1 id="page-title" class="page__title"{% if page.locale %} lang="{{ page.locale }}"{% endif %}>{{ page.title }}</h1>
-    {% endunless %}
-    {{ content }}
-  </div>
+  <button id="toggleGraphSidePanelBtn" class="toggle-graph-panel-button" aria-label="Toggle Graph Panel" aria-expanded="false">
+    <!-- Puoi usare un'icona SVG, un'icona Font Awesome, o semplice testo -->
+    <span class="icon open-icon">☰</span> <!-- Esempio: icona Hamburger -->
+    <span class="icon close-icon">✕</span> <!-- Esempio: icona X (nascosta inizialmente) -->
+  </button>
+
+  <aside id="graph-side-panel">
+    <h2 class="sr-only">Mappa Interattiva del Sito</h2>
+    
+    <div id="graphNodeTooltip" class="graph-node-tooltip" style="display: none; opacity: 0;">
+      <h4 id="tooltipNodeTitle">Titolo del Nodo</h4>
+      <p id="tooltipNodeExcerpt">Qui andrà l'excerpt del nodo...</p>
+    </div>
+    
+    <div id="graph-container-wrapper">
+      <div id="graph-container" class="graph-container">
+        <!-- Il grafo JavaScript verrà renderizzato qui -->
+      </div>
+      <div id="graphLegend" class="graph-legend" style="display: none;">
+        <h4>Legenda</h4>
+        <ul></ul>
+      </div>
+    </div>
+  </aside>
 </div>
+
+<!-- Script JS del grafo e Vis.js (come prima) -->
+<script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+<script src="{{ '/assets/js/custom-graph-initializer.js' | relative_url }}"></script>
+
+<!-- Script per il Toggle del Side Panel -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleBtn = document.getElementById('toggleGraphSidePanelBtn');
+  const sidePanel = document.getElementById('graph-side-panel');
+  const mainContent = document.getElementById('archive-main-content'); // Per aggiustare il margine
+
+  if (toggleBtn && sidePanel && mainContent) {
+    // Funzione per gestire lo stato del pannello (per consistency se lo si apre di default su schermi grandi)
+    function setPanelState(isOpen) {
+      if (isOpen) {
+        sidePanel.classList.add('is-open');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        mainContent.classList.add('panel-is-open'); // Aggiunge classe al main content
+      } else {
+        sidePanel.classList.remove('is-open');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        mainContent.classList.remove('panel-is-open'); // Rimuove classe dal main content
+      }
+    }
+
+    // Evento click sul bottone
+    toggleBtn.addEventListener('click', () => {
+      const isOpen = sidePanel.classList.contains('is-open');
+      setPanelState(!isOpen);
+
+      // Se il pannello è stato appena aperto e il grafo è inizializzato,
+      // potrebbe essere utile fare un fit() per ridisegnarlo correttamente.
+      if (!isOpen && window.network && typeof window.network.fit === 'function') {
+        setTimeout(() => { // Leggero ritardo per permettere al CSS di applicarsi
+          window.network.fit();
+        }, 350); // 300ms è la durata della transizione CSS di esempio
+      }
+    });
+
+    // Opzionale: Chiudi il pannello se si clicca fuori (più complesso, per ora lo omettiamo)
+
+    // Opzionale: Apri di default su schermi grandi e chiudi su piccoli
+    // Questo potrebbe essere gestito meglio con solo CSS e @media queries
+    // per lo stato iniziale, ma il JS può sincronizzare aria-expanded.
+    const mediaQuery = window.matchMedia('(min-width: 993px)'); // Stesso breakpoint del CSS responsive
+    
+    function handleInitialPanelState(mq) {
+      if (mq.matches) { // Schermo grande
+        setPanelState(true); // Apre il pannello
+      } else { // Schermo piccolo
+        setPanelState(false); // Chiude il pannello
+      }
+    }
+    
+    //handleInitialPanelState(mediaQuery); // Chiama per stato iniziale
+    //mediaQuery.addEventListener('change', handleInitialPanelState); // Ascolta i cambi di breakpoint
+
+    // Alternativa più semplice per lo stato iniziale:
+    // Il pannello parte chiuso (da CSS) e l'utente lo apre.
+    // O parte aperto (da CSS) e l'utente lo chiude.
+    // Scegliamo che parta chiuso di default (o aperto se preferisci, cambia il CSS di conseguenza)
+    // Per ora, lo stato iniziale sarà gestito dal CSS (vedi sotto)
+    // e il JS aggiorna solo aria-expanded in base alla classe 'is-open'.
+    // Sincronizza aria-expanded all'avvio se il pannello ha già la classe 'is-open' da CSS
+    if (sidePanel.classList.contains('is-open')) {
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        mainContent.classList.add('panel-is-open');
+    }
+
+  } else {
+    // console.warn("Elementi per il toggle del side panel non trovati.");
+  }
+});
+</script>
+<!-- Non serve più lo script per il ridimensionamento delle colonne -->

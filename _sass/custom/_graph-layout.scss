@@ -1,130 +1,241 @@
-// _sass/custom/_graph-layout.scss (o come lo hai chiamato)
+// _sass/custom/_graph-layout.scss
 
-// Variabili (assicurati che $side-panel-width sia definita, es. in _variables.scss)
-// Esempio: $side-panel-width: 280px;
-// Esempio: $graph-page-bg-color: #f0f0f0; (o il tuo colore)
+// Variabili (assicurati che siano definite, es. in _variables.scss o qui)
+$masthead-height: 40px !default;
+$footer-height: 20px !default;
+$graph-bg-color: #f1f1f1 !default; // Sfondo per le aree del grafo
+$graph-canvas-bg: #ffffff !default; // Sfondo per il canvas del grafo
+$resize-handle-width: 8px !default;
+$resize-handle-color: #ccc !default;
+$resize-handle-hover-color: #aaa !default;
 
-html.layout--graph-canvas, 
-body.layout--graph-canvas {
-  margin: 0; 
-  padding: 0; 
-  width: 100%; 
-  height: 100%; 
-  overflow: hidden; // Impedisce lo scroll della pagina intera
-  background-color: $graph-page-bg-color; 
-  font-family: $sans-serif; // Assicurati che $sans-serif sia definito
-  position: relative; // Necessario per il posizionamento assoluto di #main-content-area
+// --- Stili Comuni per Elementi del Grafo (tooltip, legenda) ---
+// (Questi sono gli stessi della tua versione precedente, quindi OK)
+.graph-node-tooltip {
+  position: absolute; 
+  background-color: #333;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  font-size: 0.9em;
+  z-index: 1000; // Sopra il canvas
+  max-width: 280px;
+  pointer-events: none; 
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+
+  &.is-visible { opacity: 1; visibility: visible; transition-delay: 0s, 0s; }
+  h4 { margin-top: 0; margin-bottom: 5px; font-size: 1.1em; }
+  p { margin-bottom: 0; }
 }
 
-// --- Contenitore Principale dell'Area Grafo/Contenuto ---
-#main-content-area-graph { // <<<<<<<<<< MODIFICATO ID QUI
-  display: flex;         
-  height: 70vh !important; // Manteniamo altezza di debug, aggiusteremo dopo se necessario
-  background-color: rgb(8, 38, 47); // Manteniamo sfondo di debug
-  position: relative; // <<<<<<<<<< CAMBIATO DA absolute A relative (per interagire meglio con il layout default)
-                      // Se questo non funziona bene con il masthead, potremmo dover rivedere
-  // top: 0; // Rimosso, lasceremo che il flusso normale del layout default lo posizioni
-  // left: 0; // Rimosso
-  width: 100%; // Prenderà la larghezza del contenitore di {{ content }} in default.html
-  flex-direction: row;   
-  // transition: left 0.3s ease-in-out, width 0.3s ease-in-out; // Probabilmente non più necessario senza sidepanel
+#graphLegend {
+  padding: 10px 15px;
+  background-color: rgba(245, 245, 245, 0.95);
+  font-size: 0.85em;
+  // border-top: 1px solid #ddd; // Aggiungi solo se necessario (es. se sotto il grafo)
+  
+  h4 { margin-top: 0; margin-bottom: 8px; font-size: 1em; font-weight: bold; }
+  ul { list-style: none; padding: 0; margin: 0; }
+  li { margin-bottom: 5px; display: flex; align-items: center; }
+  .legend-color-swatch { display: inline-block; width: 12px; height: 12px; margin-right: 8px; border: 1px solid #ccc; flex-shrink: 0; }
 }
 
-// --- Pannello Contenuto Nodo (a SINISTRA nella vista divisa) ---
-#node-content-pane {
-  flex-basis: 0;          
-  width: 0;                
-  opacity: 0;             
-  visibility: hidden;     
-  overflow-x: hidden;
-  overflow-y: auto;       
-  background-color: #ffffff; 
-  border-right: 1px solid #e0e0e0; 
-  position: relative !important; // <<<<<<<<<< AGGIUNTO !important QUI
-  
-  padding-top: 50px;       // Spazio per il bottone "X"
-  padding-left: 15px;      // Padding laterale, aggiusta se vuoi
-  padding-right: 15px;     // Padding laterale, aggiusta se vuoi
-  padding-bottom: 15px;    // Padding inferiore, aggiusta se vuoi
-  
-  box-sizing: border-box;
-  box-shadow: 2px 0 8px rgba(0,0,0,0.1); 
-  transition: flex-basis 0.4s ease-in-out, 
-              width 0.4s ease-in-out, 
-              opacity 0.3s ease-in-out 0.1s, 
-              visibility 0s linear 0.4s;    
-  h1, h2, h3 { 
-    margin-top: 0; 
+
+// --- Stili per il Layout della HOMEPAGE (`_layouts/home.html`) ---
+#homepage-graph-section {
+  width: 100%;
+  height: 600px; // Esempio: 75% dell'altezza del viewport
+  //min-height: 500px;
+  //max-height: 800px;
+  background-color: $graph-bg-color; 
+  position: relative; 
+  display: flex; 
+  flex-direction: column; 
+  overflow: hidden;
+  #graph-container-wrapper {
+    flex-grow: .9; 
+    position: relative;
+    background-color: $graph-canvas-bg;
+  }
+  #graph-container {
+    width: 100%;
+    height: 100%;
+  }
+  #graphLegend { // Legenda sotto il grafo
+    border-top: 1px solid #ddd;
   }
 }
 
-#closeContentPaneBtn {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: none;
+#homepage-graph-section #graph-container-wrapper {
+  flex-grow: 1; 
+  position: relative;
+  background-color: $graph-canvas-bg;
+  // Se l'altezza di homepage-graph-section è fissa, flex-grow dovrebbe funzionare bene
+  // Altrimenti, potresti dover dare anche a questo un'altezza fissa per test:
+  // height: 580px; // Esempio, un po' meno del genitore per la legenda
+  overflow: hidden;
+}
+
+
+#homepage-graph-section #graph-container {
+  width: 100%;
+  height: 100%; // Dovrebbe ereditare dal wrapper
+}
+
+.homepage-additional-content {
+  padding: 20px; // Spazio per il contenuto sotto il grafo
+}
+
+
+
+
+
+
+
+
+
+
+.archive-layout-with-side-panel {
+  display: flex; // Può aiutare, ma non strettamente necessario se la sidebar è position:fixed
+  position: relative; // Per posizionare la sidebar se non è fixed al viewport
+}
+
+#archive-main-content {
+  flex-grow: 1; // Occupa lo spazio disponibile
+  // Se la sidebar è fissa a destra, dai un margine destro al contenuto principale
+  // per evitare sovrapposizioni.
+  transition: margin-right $panel-transition-duration ease-in-out; // Transizione per il margine
+  margin-right: $side-panel-width; // Esempio: $graph-sidebar-width: 320px; (vedi _variables.scss)
+  padding: 20px; // Padding per il contenuto
+  &.panel-is-open {
+    // Questo si applica solo se il pannello non è in modalità "overlay" su mobile.
+    // Su desktop (pannello fisso a destra che spinge il contenuto):
+    @media (min-width: 993px) { // Stesso breakpoint del responsive della sidebar
+       margin-right: $graph-sidebar-width;
+    }
+  }
+}
+
+// --- Bottone per il Toggle ---
+.toggle-graph-panel-button {
+  position: fixed; // Fisso rispetto al viewport
+  top: calc(#{$masthead-height} + 20px); // Sotto l'header, con un po' di spazio
+  right: 20px; // Distanza dal bordo destro
+  z-index: 1001; // Sopra il pannello del grafo ma sotto eventuali menu "burger" del tema
+  background-color: #333;
+  color: white;
   border: none;
-  font-size: 28px; // Leggermente più grande
-  font-weight: 300; // Più sottile
-  color: #888;
+  padding: 8px 12px;
+  border-radius: 4px;
   cursor: pointer;
-  padding: 5px;
-  line-height: 1;
-  transition: color 0.2s ease;
-  z-index: 10; // Assicura che sia sopra l'eventuale iframe o altro contenuto
-  
-  &:hover {
-    color: #333;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: background-color 0.2s ease, right $panel-transition-duration ease-in-out;
+
+  .icon { display: inline-block; }
+  .close-icon { display: none; } // Nascosto di default
+
+  // Stile del bottone quando il pannello è aperto
+  &[aria-expanded="true"] {
+    // Sposta il bottone a sinistra per rimanere visibile quando il pannello si apre da destra
+    right: calc(#{$graph-sidebar-width} + 20px); 
+    background-color: #555;
+    .open-icon { display: none; }
+    .close-icon { display: block; }
   }
 }
 
-#node-content-target {
-  width: 100%;
-  height: calc(100% - 50px); // Esempio: se hai 50px di padding-top su #node-content-pane per il bottone X
-                            // Altrimenti, height: 100% se non c'è padding-top che interferisce.
-  overflow: hidden; // L'iframe gestirà il suo scroll
-}
-#node-content-target iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-// --- Contenitore Grafo (a DESTRA nella vista divisa, o intero) ---
-#graph-container-wrapper {
-  flex-basis: 100%;         // Stato iniziale: occupa tutto lo spazio disponibile in #main-content-area
-  width: 100%;              // Stato iniziale: larghezza piena
-  height: 100%;
-  position: relative;       // Per legenda, tooltip e #graph-container
-  
-  // Transizioni per quando si attiva la vista divisa
-  transition: flex-basis 0.4s ease-in-out, 
-              width 0.4s ease-in-out;
-}
+#graph-side-panel {
+  width: $graph-sidebar-width;
+  height: calc(100vh - #{$masthead-height}); 
+  position: fixed;    
+  top: $masthead-height; 
+  right: 0;
+  background-color: $graph-bg-color;
+  border-left: 1px solid #ddd;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.08);
+  z-index: 1000; // Leggermente sotto il bottone di toggle
 
-#graph-container {           // Il canvas effettivo di Vis.js
-  width: 100%;
-  height: 100%;
-  position: relative;       // Spesso richiesto da Vis.js
-}
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; // Molto importante
 
-// --- Stili per la VISTA DIVISA (quando body.view-mode--split è attiva) ---
-// --- Stili per la VISTA DIVISA (quando body.view-mode--split è attiva) ---
-body.view-mode--split {
-  #node-content-pane {     // Pannello SINISTRO si espande
-    flex-basis: 45%;        
-    width: 45%;
-    opacity: 1;
-    visibility: visible;
-    transition-delay: 0s, 0s, 0s, 0s;     
-    // Assicurati che qui dentro NON ci siano più regole per #closeContentPaneBtn
-    // che usano position: fixed !important;
+  // --- Transizione per l'apertura/chiusura ---
+  transform: translateX(100%); // Stato iniziale: chiuso (fuori schermo a destra)
+  transition: transform $panel-transition-duration ease-in-out;
+
+  &.is-open {
+    transform: translateX(0); // Stato aperto: visibile
   }
 
-  #graph-container-wrapper { // Grafo a DESTRA si restringe
-    flex-basis: 55%;        
-    width: 55%;
+  // Contenuto interno del pannello (wrapper grafo, grafo, legenda)
+  #graph-container-wrapper {
+    flex-grow: 1; 
+    position: relative;
+    background-color: $graph-canvas-bg;
+    overflow: hidden;
+  }
+  #graph-container {
+    width: 100%;
+    height: 100%;
   }
 }
-// Stili per Tooltip e Legenda (verifica il loro posizionamento)
-// .graph-node-tooltip { ... }
-// .graph-legend { ... }
+
+
+// --- Responsive per il Side Panel e Bottone ---
+
+#graph-side-panel #graph-container-wrapper {
+  flex-grow: 1; // Occupa lo spazio disponibile in altezza nel pannello
+  position: relative;
+  background-color: $graph-canvas-bg; // Usa la tua variabile
+  overflow: hidden; // IMPORTANTE
+}
+
+#graph-side-panel #graph-container {
+  width: 100%;
+  height: 100%;
+}
+
+#graph-side-panel #graphLegend {
+  border-top: 1px solid #ddd;
+  // Stili comuni per la legenda già definiti
+}
+
+// --- Responsive per il Side Panel ---
+@media (max-width: 992px) { // Esempio di breakpoint (tablet e inferiori)
+  #archive-main-content {
+    margin-right: 0; // Rimuovi il margine se la sidebar è nascosta o a comparsa
+  }
+
+  #graph-side-panel {
+    // Su schermi piccoli, puoi:
+    // 1. Nasconderla:
+    // display: none;
+
+    // 2. Renderla a comparsa con un bottone (più complesso, richiede JS per il toggle)
+    // transform: translateX(100%);
+    // transition: transform 0.3s ease-in-out;
+    // &.is-open {
+    //   transform: translateX(0);
+    // }
+
+    // 3. Spostarla sotto il contenuto (come avevamo prima per le colonne)
+    position: relative; // Non più fixed
+    width: 100%;
+    height: 60vh; // Altezza specifica per il grafo su mobile
+    top: auto;
+    right: auto;
+    margin-top: 20px; // Spazio dal contenuto
+    border-left: none;
+    border-top: 1px solid #ddd;
+  }
+
+  .archive-layout-with-side-panel {
+    // Se sposti la sidebar sotto, il wrapper non ha più bisogno di essere flex,
+    // o la sua flex-direction cambia in column
+  display: flex;
+  position: relative; 
+  }
+}

@@ -10,7 +10,4 @@ search: false
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 @import "custom/graph-layout";    
-@import "custom/side-panel";    
-@import "custom/graph-tooltip"; 
-@import "custom/graph-legend";
 @import "custom/my-header-mods";

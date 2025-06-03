@@ -1,4 +1,30 @@
 ---
-layout: graph-canvas
+layout: default
 ---
 
+<section id="homepage-graph-section" aria-labelledby="graph-main-title">
+  
+  <div id="graphNodeTooltip" class="graph-node-tooltip" style="display: none; opacity: 0;">
+    <h4 id="tooltipNodeTitle">Titolo del Nodo</h4>
+    <p id="tooltipNodeExcerpt">Qui andrà l'excerpt del nodo...</p>
+  </div>
+  
+  <div id="graph-container-wrapper">
+    <div id="graph-container" class="graph-container">
+      <!-- Il grafo JavaScript verrà renderizzato qui -->
+    </div>
+    <div id="graphLegend" class="graph-legend" style="display: none;">
+      <h4>Legenda</h4>
+      <ul></ul>
+    </div>
+  </div>
+</section>
+
+<!-- Eventuale altro contenuto specifico della homepage che vuoi SOTTO il grafo -->
+<div class="homepage-additional-content">
+  {{ page.additional_content | markdownify }} <!-- Esempio se vuoi aggiungere contenuto dal front matter della index.html -->
+</div>
+
+<!-- Script JS del grafo e Vis.js -->
+<script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+<script src="{{ '/assets/js/custom-graph-initializer.js' | relative_url }}"></script>

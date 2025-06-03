@@ -7,9 +7,12 @@ $sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 $type-size-5: 1.25em !default; // ~20px
 $type-size-6: 1.125em !default; // ~18px (adattato da 1em per più leggibilità)
 
+$panel-transition-duration: 0.3s;
+
 // Variabili specifiche per il tuo tema grafo/pannello
-$graph-page-bg-color: #252a34;
+$graph-page-bg-color: #1f232a;
 $main-text-color-on-dark-bg: #cccccc;
+$graph-sidebar-width: 280px;
 
 $side-panel-width: 280px;
 $side-panel-bg-color: #1c1f26;
