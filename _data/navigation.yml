@@ -7,3 +7,10 @@ main:
     url: /tags/
   - title: "About"
     url: /about/
+
+# Sidebar nav for the _libraries collection (see _config.yml defaults)
+libraries:
+  - title: "Library Reference"
+    children:
+      - title: "basic (sba)"
+        url: /libraries/basic/
