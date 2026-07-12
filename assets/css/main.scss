@@ -10,22 +10,24 @@
 
 /* ===== Library reference: tidy the right-hand table of contents ===== */
 
-/* Drop Usage/Test (h4) and deeper from the sidebar TOC.
-   MM nests one <ul> per heading level, so ".toc__menu ul ul" is the h4 list.
-   Headings stay in the body — only the sidebar is trimmed. */
-.toc__menu ul ul {
+/* Drop Usage/Test/Where (h4) and deeper from the sidebar TOC. The page h1
+   wraps the whole tree, so sections sit one <ul> deeper than in a bare
+   document: .toc__menu(h1) > ul > li(h2) > ul > li(h3) > ul > li(h4).
+   The h4 lists are the third nested <ul>. Headings stay in the body —
+   only the sidebar is trimmed. */
+.toc__menu ul ul ul {
   display: none;
 }
 
 /* Section titles (h2): heavier, uppercase, clearly the top level. */
-.toc__menu > li > a {
+.toc__menu > li > ul > li > a {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
 /* Function entries (h3): lighter and subordinate. */
-.toc__menu > li > ul > li > a {
+.toc__menu > li > ul > li > ul > li > a {
   font-weight: 400;
   text-transform: none;
   letter-spacing: 0;
