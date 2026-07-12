@@ -13,4 +13,4 @@ libraries:
   - title: "Library Reference"
     children:
       - title: "basic (sba)"
-        url: /libraries/basic/
+        url: /faustlibraries/basic/

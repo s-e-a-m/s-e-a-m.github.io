@@ -88,7 +88,7 @@ footer:
 collections:
   libraries:
     output: true
-    permalink: /libraries/:path/
+    permalink: /faustlibraries/:path/
 
 defaults:
   # _posts
