@@ -11,12 +11,12 @@ SEAM Basics library. Its official prefix is `sba`.
 Reusable low-level building blocks that EXTEND the standard Faust `basics.lib`:
 only elements not already provided upstream are kept here.
 
+* [References](#references)
 * [Sweep Functions](#sweep-functions)
 * [List Functions](#list-functions)
 * [Scaling](#scaling)
-* [Routing](#routing)
 
-#### References
+## References
 
 * [https://github.com/s-e-a-m/faust-libraries/blob/master/src/seam.basic.lib](https://github.com/s-e-a-m/faust-libraries/blob/master/src/seam.basic.lib)
 
@@ -133,6 +133,51 @@ sba = library("seam.basic.lib");
 revlist_test = sba.revlist(23);
 ```
 
+----
+
+### `(sba.)lrev`
+
+Reverse a list-literal: the parallel bus `(x0,x1,...,xn)` becomes
+`(xn,...,x1,x0)`. Generalizes `revlist` (which only generates a descending
+counter) to any list of values.
+
+#### Usage
+```
+lrev((x0,x1,...,xn))
+```
+Where:
+
+* the argument is a list-literal (compile-time parallel expression)
+
+#### Test
+```
+sba = library("seam.basic.lib");
+lrev_test = sba.lrev((10,20,30));
+```
+
+----
+
+### `(sba.)lrot`
+
+Cyclically rotate a list-literal by `k`: `((1,2,3,4),1)` becomes
+`(2,3,4,1)`. `k` is taken modulo the list length, so any integer is valid;
+positive `k` rotates left, negative rotates right.
+
+#### Usage
+```
+lrot((x0,x1,...,xn), k)
+```
+Where:
+
+* the first argument is a list-literal
+* `k`: rotation amount (compile-time integer)
+
+#### Test
+```
+sba = library("seam.basic.lib");
+lrot_test = sba.lrot((1,2,3,4),1);
+```
+
 ##  Scaling 
 
 
@@ -159,26 +204,55 @@ sba = library("seam.basic.lib");
 scalel_test = os.osc(1000) : sba.scalel(-1,1,0,1);
 ```
 
-##  Routing 
-
-
 ----
 
-### `(sba.)vstin`
+### `(sba.)scalee`
 
-Input manager: pass the first `y` channels through, block the next `n`.
+Exponential (geometric) rescale of `x` from input range `[a,b]` to output
+range `[c,d]`. Perceptually uniform — a linear control sounds even — so it
+is ideal for frequency and gain. The curve is fixed by the ratio `d/c`.
+
+Requires `c` and `d` non-zero and of the same sign; for ranges that include
+zero use `scalec`.
 
 #### Usage
 ```
-si.bus(y+n) : vstin(y,n) : si.bus(y)
+_ : scalee(a,b,c,d) : _
 ```
 Where:
 
-* `y`: number of channels to pass
-* `n`: number of channels to block
+* `a`, `b`: input range (min, max)
+* `c`, `d`: output range (min, max), same sign, non-zero
 
 #### Test
 ```
+os = library("oscillators.lib");
 sba = library("seam.basic.lib");
-vstin_test = sba.vstin(1,3);
+scalee_test = os.osc(1) : sba.scalee(-1,1,20,20000);
+```
+
+----
+
+### `(sba.)scalec`
+
+Curved (power) rescale of `x` from `[a,b]` to `[c,d]`, shaped by `curve`:
+`curve=1` is linear, `curve>1` eases in (slow start), `curve<1` eases out
+(fast start). Works for any output range, including `c=0`. Keep `x` within
+`[a,b]` (a negative normalized base with a fractional `curve` is undefined).
+
+#### Usage
+```
+_ : scalec(a,b,c,d,curve) : _
+```
+Where:
+
+* `a`, `b`: input range (min, max)
+* `c`, `d`: output range (min, max)
+* `curve`: curvature exponent (>0); 1 = linear
+
+#### Test
+```
+os = library("oscillators.lib");
+sba = library("seam.basic.lib");
+scalec_test = os.osc(1) : sba.scalec(-1,1,0,1,2);
 ```
