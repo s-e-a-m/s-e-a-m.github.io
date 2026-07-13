@@ -33,3 +33,15 @@
   letter-spacing: 0;
   opacity: 0.85;
 }
+
+/* ===== Faust block diagrams embedded in library docs ===== */
+.faust-diagram {
+  margin: 1.5em 0;
+  overflow-x: auto;   /* wide diagrams scroll in their own box; page body never does */
+  text-align: center;
+}
+
+.faust-diagram svg {
+  max-width: 100%;
+  height: auto;
+}
