@@ -1,6 +1,6 @@
 ---
 title: "Faust Libraries · basic"
-permalink: /faustlibraries/basic/
+permalink: /faust-libraries/basic/
 toc: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Faust Libraries · math"
-permalink: /faustlibraries/math/
+permalink: /faust-libraries/math/
 toc: true
 ---
 
