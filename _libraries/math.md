@@ -1,9 +1,13 @@
 ---
 title: "Faust Libraries · math"
-permalink: /faustlibraries/math/
+permalink: /faust-libraries/math/
 toc: true
+generated_from: faust-libraries
+generated_rev: 7cc26bf
+generated_at: 2026-08-28
 ---
 
+<!-- GENERATO — non modificare qui: la fonte è faust-libraries/src/seam.math.lib -->
 #  seam.math.lib 
 
 SEAM Math library. Its official prefix is `sma`.

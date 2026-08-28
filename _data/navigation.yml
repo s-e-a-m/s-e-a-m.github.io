@@ -1,4 +1,6 @@
 main:
+  - title: "Docs"
+    url: /docs/
   - title: "Posts"
     url: /posts/
   - title: "Categories"
@@ -8,11 +10,13 @@ main:
   - title: "About"
     url: /about/
 
-# Sidebar nav for the _libraries collection (see _config.yml defaults)
+# BEGIN libraries (generato — non modificare a mano)
 libraries:
   - title: "Library Reference"
+    url: /faust-libraries/
     children:
       - title: "basic (sba)"
-        url: /faustlibraries/basic/
+        url: /faust-libraries/basic/
       - title: "math (sma)"
-        url: /faustlibraries/math/
+        url: /faust-libraries/math/
+# END libraries
