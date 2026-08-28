@@ -2,8 +2,12 @@
 title: "Faust Libraries · basic"
 permalink: /faust-libraries/basic/
 toc: true
+generated_from: faust-libraries
+generated_rev: 7cc26bf
+generated_at: 2026-08-28
 ---
 
+<!-- GENERATO — non modificare qui: la fonte è faust-libraries/src/seam.basic.lib -->
 #  seam.basic.lib 
 
 SEAM Basics library. Its official prefix is `sba`.
