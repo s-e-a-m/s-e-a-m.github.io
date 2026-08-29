@@ -45,3 +45,51 @@
   max-width: 100%;
   height: auto;
 }
+
+/* ===== SEAN: tabella dei segni, con i glifi inline ===== */
+
+/* I glifi sono SVG vettoriali senza sfondo proprio: il colore arriva da
+   currentColor, quindi seguono il tema. Qui si governa solo la dimensione,
+   perché pdftocairo scrive width/height in pt e senza vincolo la tabella
+   diventa una colonna di francobolli disallineati. */
+.sean-glyphs {
+  border-collapse: collapse;
+  font-size: 0.85em;
+}
+
+/* La descrizione ha bisogno del suo spazio: senza un minimo, la colonna
+   viene schiacciata dai glifi e il testo si tronca al bordo. */
+.sean-glyphs td:last-child,
+.sean-glyphs th:last-child {
+  min-width: 9rem;
+}
+
+/* Il contenuto della pagina e stretto (sidebar a sinistra, TOC a destra) e la
+   tabella ha sei colonne: si guadagna spazio stringendo il padding, non
+   allargando la tabella oltre il contenitore. */
+.sean-glyphs th,
+.sean-glyphs td {
+  padding: 0.35em 0.4em;
+  vertical-align: middle;
+  text-align: left;
+}
+
+.sean-glyphs td.glyph {
+  text-align: center;
+  min-width: 4rem;
+}
+
+.sean-glyphs td.glyph svg {
+  height: 2.6rem;
+  width: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+/* Le tabelle larghe scorrono nel proprio contenitore: il corpo pagina non
+   scorre mai. Il wrapper serve davvero — mettere overflow sulla <table> non
+   basta, perche il tema le impagina a modo suo e il contenuto si tronca. */
+.sean-table-wrap {
+  overflow-x: auto;
+  margin: 1em 0;
+}

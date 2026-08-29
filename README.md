@@ -22,8 +22,9 @@ Each project generates its own Markdown and copies it here; the site does not bu
 | Collection | Folder | URL | Source |
 |---|---|---|---|
 | `libraries` | `_libraries/` | `/faust-libraries/` | repo `faust-libraries` — `make -C doc publish` |
+| `sean` | `_sean/` | `/sean/` | repo `sean` — `make publish` |
 
-`sean` and `seam-ltm` will get their own collections, at `/sean/` and `/seam-ltm/`.
+`seam-ltm` will get its own collection, at `/seam-ltm/`.
 
 The rule for public addresses: **the URL is the name of the repository**.
 The one declared exception is the hub page `/docs/`, which belongs to no single repository because it is the index of all of them.

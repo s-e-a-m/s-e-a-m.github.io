@@ -19,8 +19,9 @@ Every function is documented at the source, in the `.lib` files themselves, and 
 ## SEAN — Sustained ElectroAcoustic Notation
 
 A TikZ library for writing electroacoustic block diagrams as scores, transcribed from Walter Branchi's *Tecnologie della musica elettronica* (1976) and extended to contemporary use.
+The reference shows every sign as drawn by each font, side by side, with the inheritance made explicit.
 
-Coming soon.
+[Browse the notation reference](/sean/)
 
 ## SEAM-LTM — Learning Through Making
 

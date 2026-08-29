@@ -89,6 +89,9 @@ collections:
   libraries:
     output: true
     permalink: /faust-libraries/:path/
+  sean:
+    output: true
+    permalink: /sean/:path/
 
 defaults:
   # _posts
@@ -118,6 +121,16 @@ defaults:
       author_profile: false
       sidebar:
         nav: "libraries"
+  # _sean
+  - scope:
+      path: ""
+      type: sean
+    values:
+      layout: single
+      author_profile: false
+      toc: true
+      sidebar:
+        nav: "sean"
 
 category_archive:
   type: liquid
