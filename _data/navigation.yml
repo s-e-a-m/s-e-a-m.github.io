@@ -49,3 +49,16 @@ sean:
       - title: "catena aria compressa (sub)"
         url: /sean/#catena-aria-compressa--sub
 # END sean
+
+# BEGIN ltm (generato — non modificare a mano)
+ltm:
+  - title: "Plugin Suite"
+    url: /seam-ltm/
+    children:
+      - title: "Format converters and rotators"
+        url: /seam-ltm/#format-converters-and-rotators
+      - title: "Signal generators"
+        url: /seam-ltm/#signal-generators
+      - title: "Measurement and processing"
+        url: /seam-ltm/#measurement-and-processing
+# END ltm

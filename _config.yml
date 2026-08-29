@@ -92,6 +92,9 @@ collections:
   sean:
     output: true
     permalink: /sean/:path/
+  ltm:
+    output: true
+    permalink: /seam-ltm/:path/
 
 defaults:
   # _posts
@@ -131,6 +134,16 @@ defaults:
       toc: true
       sidebar:
         nav: "sean"
+  # _ltm
+  - scope:
+      path: ""
+      type: ltm
+    values:
+      layout: single
+      author_profile: false
+      toc: true
+      sidebar:
+        nav: "ltm"
 
 category_archive:
   type: liquid
