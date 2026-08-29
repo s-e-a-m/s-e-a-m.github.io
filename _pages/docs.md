@@ -26,5 +26,6 @@ The reference shows every sign as drawn by each font, side by side, with the inh
 ## SEAM-LTM — Learning Through Making
 
 Sixteen VST3 plugins built directly on the Steinberg SDK: format converters, signal generators, and measurement tools.
+Several are the C++ counterpart of an algorithm that also lives in the Faust libraries.
 
-Coming soon.
+[Browse the plugin suite](/seam-ltm/)

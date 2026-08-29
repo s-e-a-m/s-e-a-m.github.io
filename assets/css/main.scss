@@ -93,3 +93,15 @@
   overflow-x: auto;
   margin: 1em 0;
 }
+
+/* ===== SEAM-LTM: schede dei plugin ===== */
+
+/* Gli screenshot sono fotografie di finestre, non diagrammi: hanno una loro
+   dimensione naturale e vanno contenuti, non stirati a piena larghezza. */
+.ltm-shot {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0.5em 0 1em;
+  border-radius: 3px;
+}
