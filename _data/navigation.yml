@@ -20,3 +20,32 @@ libraries:
       - title: "math (sma)"
         url: /faust-libraries/math/
 # END libraries
+
+# BEGIN sean (generato — non modificare a mano)
+sean:
+  - title: "Notation Reference"
+    url: /sean/
+    children:
+      - title: "sorgenti / segni base"
+        url: /sean/#sorgenti---segni-base
+      - title: "strumenti di misura"
+        url: /sean/#strumenti-di-misura
+      - title: "generatori"
+        url: /sean/#generatori
+      - title: "filtri"
+        url: /sean/#filtri
+      - title: "modulatori (diamanti)"
+        url: /sean/#modulatori--diamanti
+      - title: "registrazione / lettura"
+        url: /sean/#registrazione---lettura
+      - title: "trasduttori / utenza (già fatti)"
+        url: /sean/#trasduttori---utenza--già-fatti
+      - title: "estensioni"
+        url: /sean/#estensioni
+      - title: "uscite / diffusori (oltre il canone WB)"
+        url: /sean/#uscite---diffusori--oltre-il-canone-wb
+      - title: "trasduttori d'ingresso (oltre il canone WB)"
+        url: /sean/#trasduttori-d-ingresso--oltre-il-canone-wb
+      - title: "catena aria compressa (sub)"
+        url: /sean/#catena-aria-compressa--sub
+# END sean
