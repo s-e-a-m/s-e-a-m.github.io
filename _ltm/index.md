@@ -3,8 +3,8 @@ title: "SEAM-LTM — Plugin Suite"
 permalink: /seam-ltm/
 toc: true
 generated_from: seam-ltm
-generated_rev: 9635611
-generated_at: 2026-10-01
+generated_rev: ed0cfc3
+generated_at: 2026-10-02
 ---
 
 <!-- GENERATO — non modificare qui: la fonte è doc/plugins.toml di seam-ltm -->
@@ -15,7 +15,7 @@ Several of them are the C++ counterpart of an algorithm that also lives in Faust
 
 Building the suite, the VST3 SDK and the installation paths are documented in the [repository README](https://github.com/s-e-a-m/seam-ltm) — they belong next to the code, where they cannot quietly go stale.
 
-Generated from [github.com/s-e-a-m/seam-ltm](https://github.com/s-e-a-m/seam-ltm) at `9635611`.
+Generated from [github.com/s-e-a-m/seam-ltm](https://github.com/s-e-a-m/seam-ltm) at `ed0cfc3`.
 
 ## Format converters and rotators
 
@@ -186,5 +186,15 @@ Faust counterpart: [`seam.filters.lib`](https://github.com/s-e-a-m/faust-librari
 The generator of Studio sul Corpo d'Ombra #2 (Cortegiani, Tedesco): on each of four channels, two narrow bands of noise through 24th-order Butterworth high- and low-pass filters, which beat at a distance Δ. The band centre glides linearly over a set time, as the piece's cues ask; the level is anchored at 96 kHz, so the bands sound the same at any sample rate
 
 <img src="/assets/seam-ltm/img/lmo.png" alt="LMO" class="ltm-shot">
+
+Faust counterpart: [`seam.tedesco.lib`](https://github.com/s-e-a-m/faust-libraries/blob/master/src/seam.tedesco.lib).
+
+### STUNEDREV
+
+**4ch → 4ch**
+
+The APF of Studio sul Corpo d'Ombra #2 (Cortegiani, Tedesco): four independent lines of 42 Moorer all-pass sections in series, one per face of STONED, tuned by √2, φ, e and π. Each delay is a time in milliseconds moved to the next prime at the session's rate, so each face returns the sound on its own time scale, from seconds to minutes. One arena sized exactly at activation, and a RESET that empties it while playing
+
+<img src="/assets/seam-ltm/img/stunedrev.png" alt="STUNEDREV" class="ltm-shot">
 
 Faust counterpart: [`seam.tedesco.lib`](https://github.com/s-e-a-m/faust-libraries/blob/master/src/seam.tedesco.lib).
