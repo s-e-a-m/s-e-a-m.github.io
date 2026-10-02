@@ -3,7 +3,7 @@ title: "SEAM-LTM — Plugin Suite"
 permalink: /seam-ltm/
 toc: true
 generated_from: seam-ltm
-generated_rev: 3fd18b8
+generated_rev: 83499b1
 generated_at: 2026-10-02
 ---
 
@@ -15,7 +15,7 @@ Several of them are the C++ counterpart of an algorithm that also lives in Faust
 
 Building the suite, the VST3 SDK and the installation paths are documented in the [repository README](https://github.com/s-e-a-m/seam-ltm) — they belong next to the code, where they cannot quietly go stale.
 
-Generated from [github.com/s-e-a-m/seam-ltm](https://github.com/s-e-a-m/seam-ltm) at `3fd18b8`.
+Generated from [github.com/s-e-a-m/seam-ltm](https://github.com/s-e-a-m/seam-ltm) at `83499b1`.
 
 ## Format converters and rotators
 
@@ -206,5 +206,15 @@ Faust counterpart: [`seam.tedesco.lib`](https://github.com/s-e-a-m/faust-librari
 delRM of Studio sul Corpo d'Ombra #2 (Cortegiani, Tedesco): four channels, each processing its own input. Channels 1 and 3 add the input to itself delayed; channels 2 and 4 multiply the delayed input, the input and its integral, into an 11:1 compressor. The delay is DDELAY's distance in metres moved to the next prime, one for the four channels. Input meters and the gain reduction of channels 2 and 4, drawn in opposite directions
 
 <img src="/assets/seam-ltm/img/delrm.png" alt="DELRM" class="ltm-shot">
+
+Faust counterpart: [`seam.tedesco.lib`](https://github.com/s-e-a-m/faust-libraries/blob/master/src/seam.tedesco.lib).
+
+### CHOIR
+
+**4ch → 4ch**
+
+The choir of Studio sul Corpo d'Ombra #2 (Cortegiani, Tedesco): on each of four channels, 16 narrow bands listen to the input around the harmonics of a fundamental and make 16 voices of noise sing around stretched harmonics, each voice as loud as its band of the input. The voices sing on the third block of the piece's noise, decorrelated from LMO and from each other. A 4×16 grid shows, band by band, what the choir is hearing, and a RESET silences the bands that are still ringing
+
+<img src="/assets/seam-ltm/img/choir.png" alt="CHOIR" class="ltm-shot">
 
 Faust counterpart: [`seam.tedesco.lib`](https://github.com/s-e-a-m/faust-libraries/blob/master/src/seam.tedesco.lib).
