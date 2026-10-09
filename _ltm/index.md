@@ -3,8 +3,8 @@ title: "SEAM-LTM — Plugin Suite"
 permalink: /seam-ltm/
 toc: true
 generated_from: seam-ltm
-generated_rev: 83499b1
-generated_at: 2026-10-02
+generated_rev: 132ca0b
+generated_at: 2026-10-09
 ---
 
 <!-- GENERATO — non modificare qui: la fonte è doc/plugins.toml di seam-ltm -->
@@ -15,7 +15,7 @@ Several of them are the C++ counterpart of an algorithm that also lives in Faust
 
 Building the suite, the VST3 SDK and the installation paths are documented in the [repository README](https://github.com/s-e-a-m/seam-ltm) — they belong next to the code, where they cannot quietly go stale.
 
-Generated from [github.com/s-e-a-m/seam-ltm](https://github.com/s-e-a-m/seam-ltm) at `83499b1`.
+Generated from [github.com/s-e-a-m/seam-ltm](https://github.com/s-e-a-m/seam-ltm) at `132ca0b`.
 
 ## Format converters and rotators
 
@@ -69,7 +69,7 @@ Faust counterpart: [`seam.ambisonics.lib`](https://github.com/s-e-a-m/faust-libr
 
 **A-format 4ch → AmbiX 4ch**
 
-Tetrahedral microphone A-format to first-order AmbiX: LFU RFD RBU LBD → A0 A1 A2 A3. Pure matrix, involutory (M² = I), the inverse of BAMODULEX, and the front end of the TETRAREC chain
+Tetrahedral microphone A-format to first-order AmbiX: LFU RFD RBU LBD → A0 A1 A2 A3. Pure matrix, involutory (M² = I), the inverse of BAMODULEX, and the front end of the TETRAREC chain. A SETUP menu reads the four capsules as the dual tetrahedron, LFD RFU RBD LBU: the upright one mirrored in the horizontal plane, Z changing sign
 
 <img src="/assets/seam-ltm/img/abmodulex.png" alt="ABMODULEX" class="ltm-shot">
 
@@ -203,7 +203,7 @@ Faust counterpart: [`seam.tedesco.lib`](https://github.com/s-e-a-m/faust-librari
 
 **4ch → 4ch**
 
-delRM of Studio sul Corpo d'Ombra #2 (Cortegiani, Tedesco): four channels, each processing its own input. Channels 1 and 3 add the input to itself delayed; channels 2 and 4 multiply the delayed input, the input and its integral, into an 11:1 compressor. The delay is DDELAY's distance in metres moved to the next prime, one for the four channels. Input meters and the gain reduction of channels 2 and 4, drawn in opposite directions
+delRM of Studio sul Corpo d'Ombra #2 (Cortegiani, Tedesco): four channels, each processing its own input. Channels 1 and 3 add the input to itself delayed; channels 2 and 4 multiply the delayed input, the input and its integral, into a compressor, the score's 11:1 by default, with drive, threshold, ratio, attack and release under five sliders for each of the two. The delay is DDELAY's distance in metres moved to the next prime, one for the four channels. Input meters and the gain reduction of channels 2 and 4, drawn in opposite directions
 
 <img src="/assets/seam-ltm/img/delrm.png" alt="DELRM" class="ltm-shot">
 
